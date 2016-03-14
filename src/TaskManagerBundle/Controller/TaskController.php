@@ -2,12 +2,11 @@
 
 namespace TaskManagerBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use TaskManagerBundle\Entity\Task;
-use TaskManagerBundle\Form\TaskType;
 
 /**
  * Task controller.
@@ -113,11 +112,19 @@ class TaskController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($task);
-            $em->flush();
+            $this->deleteTask($task);
         }
 
+        return $this->redirectToRoute('task_index');
+    }
+
+    /**
+     * @Route("/{id}/delete", name="task_delete")
+     * @Method("GET")
+     */
+    public function deleteTaskAction(Task $task)
+    {
+        $this->deleteTask($task);
         return $this->redirectToRoute('task_index');
     }
 
@@ -133,7 +140,16 @@ class TaskController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('task_delete', array('id' => $task->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
+    }
+
+    /**
+     * @param Task $task
+     */
+    private function deleteTask(Task $task)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($task);
+        $em->flush();
     }
 }

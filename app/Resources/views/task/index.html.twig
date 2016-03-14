@@ -30,7 +30,7 @@
                         <li>
                             <a href="{{ path('task_edit', { 'id': task.id }) }}" class="btn btn-success">Edit</a>
                         </li>
-                        <li><a href="#" class="btn btn-danger">Remove</a> </li>
+                        <li><a href="{{ path('task_delete', { 'id': task.id }) }}" class="btn btn-danger" onclick="return confirm('Are you sure to delete this task?');">Remove</a> </li>
                     </ul>
                 </td>
             </tr>
