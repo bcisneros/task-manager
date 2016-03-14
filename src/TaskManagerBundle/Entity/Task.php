@@ -2,6 +2,7 @@
 
 namespace TaskManagerBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -70,6 +71,16 @@ class Task
      * @ORM\Column(name="status", type="string", length=20)
      */
     private $status;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="taskId")
+     */
+    protected $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
 
     /**
@@ -281,5 +292,38 @@ class Task
             }
         return $this;
     }
-}
 
+    /**
+     * Add comment
+     *
+     * @param \TaskManagerBundle\Entity\Comment $comment
+     *
+     * @return Task
+     */
+    public function addComment(\TaskManagerBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \TaskManagerBundle\Entity\Comment $comment
+     */
+    public function removeComment(\TaskManagerBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+}
