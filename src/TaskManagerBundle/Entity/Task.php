@@ -269,5 +269,17 @@ class Task
     {
         return $this->status;
     }
+
+    public function changeStatus()
+    {
+        if ($this->getStatus() == "New") {
+            $this->setStatus("In progress");
+        } else
+
+            if ($this->getStatus() == "In progress") {
+                $this->setStatus("Closed");
+            }
+        return $this;
+    }
 }
 

@@ -134,14 +134,7 @@ class TaskController extends Controller
      */
     public function changeStatusAction(Task $task)
     {
-        if ($task->getStatus() == "New") {
-            $task->setStatus("In progress");
-        } else
-
-            if ($task->getStatus() == "In progress") {
-                $task->setStatus("Closed");
-            }
-
+        $task->changeStatus();
         $em = $this->getDoctrine()->getManager();
         $em->persist($task);
         $em->flush();
