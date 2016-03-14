@@ -1,51 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Task list</h1>
-
+    <h2>All Tasks</h2>
+    <ul>
+        <li>
+            <a href="{{ path('task_new') }}">New task</a>
+        </li>
+    </ul>
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Duedate</th>
-                <th>Creationdate</th>
-                <th>Category</th>
-                <th>Priority</th>
-                <th>Status</th>
+                <th>Due date</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for task in tasks %}
             <tr>
-                <td><a href="{{ path('task_show', { 'id': task.id }) }}">{{ task.id }}</a></td>
                 <td>{{ task.name }}</td>
                 <td>{{ task.description }}</td>
-                <td>{{ task.dueDate | date('d-m-Y h:mi') }}</td>
-                <td>{{ task.creationDate | date('d-m-Y h:i') }}</td>
-                <td>{{ task.category }}</td>
-                <td>{{ task.priority }}</td>
-                <td>{{ task.status }}</td>
+                <td>{{ task.dueDate | date('Y-m-d h:i A') }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('task_show', { 'id': task.id }) }}">show</a>
+                            <a href="{{ path('task_show', { 'id': task.id }) }}">Details</a>
                         </li>
                         <li>
-                            <a href="{{ path('task_edit', { 'id': task.id }) }}">edit</a>
+                            <a href="{{ path('task_edit', { 'id': task.id }) }}">Edit</a>
                         </li>
+                        <li><a href="#">Remove</a> </li>
                     </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">Total: {{ tasks | length }}</td>
+            </tr>
+        </tfoot>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('task_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
 {% endblock %}

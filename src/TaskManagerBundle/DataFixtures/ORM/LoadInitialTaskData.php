@@ -19,7 +19,7 @@ class LoadInitialTaskData implements FixtureInterface
         $sendEmailTask = new Task();
         $sendEmailTask->setName("Send email");
         $sendEmailTask->setDescription("Send sales report to manager@company.com");
-        $sendEmailTask->setDueDate(new \DateTime('15-01-2016 04:00'));
+        $sendEmailTask->setDueDate(new \DateTime('15-01-2016 16:00'));
         $sendEmailTask->setCreationDate(new \DateTime('14-01-2016 02:45'));
         $sendEmailTask->setCategory("Work");
         $sendEmailTask->setPriority("Normal");
@@ -37,7 +37,7 @@ class LoadInitialTaskData implements FixtureInterface
         $pickMySonTask = new Task();
         $pickMySonTask->setName("Pick my son");
         $pickMySonTask->setDescription("Go to school and pick my son");
-        $pickMySonTask->setDueDate(new \DateTime('25-01-2016 02:30'));
+        $pickMySonTask->setDueDate(new \DateTime('25-01-2016 14:30'));
         $pickMySonTask->setCreationDate(new \DateTime('25-01-2016 02:16'));
         $pickMySonTask->setCategory("Personal");
         $pickMySonTask->setPriority("Urgent");
