@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="tasks")
  * @ORM\Entity(repositoryClass="TaskManagerBundle\Repository\TaskRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Task
 {
@@ -168,6 +169,16 @@ class Task
     }
 
     /**
+     * @ORM\PrePersist
+     */
+    public function setCreationDateValue()
+    {
+        if ($this->creationDate === null) {
+            $this->creationDate = new \DateTime();
+        }
+    }
+
+    /**
      * Get creationDate
      *
      * @return \DateTime
@@ -237,6 +248,16 @@ class Task
         $this->status = $status;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setStatusValue()
+    {
+        if ($this->status === null) {
+            $this->status = 'New';
+        }
     }
 
     /**
