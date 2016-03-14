@@ -29,6 +29,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
 }
 .footer {
     position: absolute;
@@ -40,6 +41,17 @@ body {
 }
 /* End Sticky footer styles*/
 
-.footer address {
+address {
     text-align: center;
+    padding-top: 20px;
+    width: auto;
+
+}
+
+.header {
+    background: #0f0f0f;
+    position: relative;
+    width: 100%;
+    top:0;
+    color: #dff0d8;
 }

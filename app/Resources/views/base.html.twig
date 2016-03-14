@@ -10,17 +10,16 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <div class="container">
-            <header>
+        <div class="header">
+            <header class="container">
                 <h1>Task Manager</h1>
             </header>
+        </div>
+        <div class="container">
             {% block body %}{% endblock %}
-
         </div>
         <footer class="footer">
-            <div class="container">
-                <address>Developers Delicias 2016. All rights reserved.</address>
-            </div>
+            <address>Developers Delicias 2016. All rights reserved.</address>
         </footer>
         {% block javascripts %}{% endblock %}
     </body>
