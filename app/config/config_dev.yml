@@ -32,3 +32,14 @@ monolog:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   taskmanager_dev
+        user:     taskmanager_dev_user
+        password: dev
+        charset:  UTF8
