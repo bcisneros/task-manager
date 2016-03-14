@@ -4,6 +4,7 @@ namespace TaskManagerBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,21 +19,25 @@ class TaskType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array('attr' => array('placeholder' => 'Introduce task name')))
+            ->add('name', TextType::class, array('attr' => array('placeholder' => 'Introduce task name', 'class' => 'form-control'
+            )))
             ->add('description', TextareaType::class, array('attr' => array(
-                'placeholder' => 'Introduce a more detailed description (optional)'
+                'placeholder' => 'Introduce a more detailed description (optional)', 'class' => 'form-control'
             ), 'required' => false))
-            ->add('dueDate')
+            ->add('dueDate', DateTimeType::class)
             ->add('category', ChoiceType::class, array('choices' => array(
                 '(Uncatalogued)' => null,
                 'Family' => 'Family',
                 'Social' => 'Social',
-                'Work' => 'Work')))
+                'Work' => 'Work'),
+                'attr' => array('class' => 'form-control'),
+                'required' => false))
             ->add('priority', ChoiceType::class, array('choices' => array(
                 'Low' => 'Low',
                 'Normal' => 'Normal',
                 'High' => 'High',
-                'Urgent' => 'Urgent')));
+                'Urgent' => 'Urgent'),
+                'attr' => array('class' => 'form-control')));
     }
 
     /**

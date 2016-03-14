@@ -3,18 +3,25 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link href="{{ asset('vendor/bootstrap/3.3.6/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+            <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css"/>
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        <header>
-            <h1>Task Manager</h1>
-        </header>
-        {% block body %}{% endblock %}
-        <footer>
-            <address>Developers Delicias 2016. All rights reserved.</address>
+        <div class="container">
+            <header>
+                <h1>Task Manager</h1>
+            </header>
+            {% block body %}{% endblock %}
+
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <address>Developers Delicias 2016. All rights reserved.</address>
+            </div>
         </footer>
         {% block javascripts %}{% endblock %}
-
     </body>
 </html>

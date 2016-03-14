@@ -2,12 +2,12 @@
 
 {% block body %}
     <h2>All Tasks</h2>
-    <ul>
-        <li>
-            <a href="{{ path('task_new') }}">New task</a>
+    <ul class="task-actions">
+        <li class="new">
+            <a href="{{ path('task_new') }}" class="btn btn-primary">New task</a>
         </li>
     </ul>
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Name</th>
@@ -23,14 +23,14 @@
                 <td>{{ task.description }}</td>
                 <td>{{ task.dueDate | date('Y-m-d h:i A') }}</td>
                 <td>
-                    <ul>
+                    <ul class="task-actions">
                         <li>
-                            <a href="{{ path('task_show', { 'id': task.id }) }}">Details</a>
+                            <a href="{{ path('task_show', { 'id': task.id }) }}" class="btn btn-primary">Details</a>
                         </li>
                         <li>
-                            <a href="{{ path('task_edit', { 'id': task.id }) }}">Edit</a>
+                            <a href="{{ path('task_edit', { 'id': task.id }) }}" class="btn btn-success">Edit</a>
                         </li>
-                        <li><a href="#">Remove</a> </li>
+                        <li><a href="#" class="btn btn-danger">Remove</a> </li>
                     </ul>
                 </td>
             </tr>
