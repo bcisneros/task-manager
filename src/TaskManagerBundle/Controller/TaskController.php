@@ -11,8 +11,7 @@ use TaskManagerBundle\Form\TaskType;
 
 /**
  * Task controller.
- * @Route("/")
- * @Route("/task")
+ * @Route("/tasks")
  */
 class TaskController extends Controller
 {
