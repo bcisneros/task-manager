@@ -41,7 +41,7 @@ class LoadInitialTaskData implements FixtureInterface
         $pickMySonTask->setCreationDate(new \DateTime('25-01-2016 02:16'));
         $pickMySonTask->setCategory("Personal");
         $pickMySonTask->setPriority("Urgent");
-        $pickMySonTask->setStatus("Open");
+        $pickMySonTask->setStatus("In progress");
 
         $manager->persist($sendEmailTask);
         $manager->persist($goToMarketTask);

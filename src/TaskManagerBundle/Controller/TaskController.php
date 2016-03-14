@@ -129,6 +129,26 @@ class TaskController extends Controller
     }
 
     /**
+     * @Route("/{id}/change-status", name="task_change_status")
+     * @Method("GET")
+     */
+    public function changeStatusAction(Task $task)
+    {
+        if ($task->getStatus() == "New") {
+            $task->setStatus("In progress");
+        } else
+
+            if ($task->getStatus() == "In progress") {
+                $task->setStatus("Closed");
+            }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($task);
+        $em->flush();
+        return $this->redirectToRoute('task_show', array('id' => $task->getId()));
+    }
+
+    /**
      * Creates a form to delete a Task entity.
      *
      * @param Task $task The Task entity
