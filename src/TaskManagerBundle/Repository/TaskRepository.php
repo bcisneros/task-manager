@@ -10,4 +10,9 @@ namespace TaskManagerBundle\Repository;
  */
 class TaskRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAll()
+    {
+        return $this->findBy(array(), array('dueDate' => 'ASC'));
+    }
+
 }
