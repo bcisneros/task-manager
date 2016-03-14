@@ -90,7 +90,7 @@ class TaskController extends Controller
             $em->persist($task);
             $em->flush();
 
-            return $this->redirectToRoute('task_edit', array('id' => $task->getId()));
+            return $this->redirectToRoute('task_index');
         }
 
         return $this->render('task/edit.html.twig', array(
