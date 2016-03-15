@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="comments")
  * @ORM\Entity(repositoryClass="TaskManagerBundle\Repository\CommentRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Comment
 {
@@ -95,6 +96,16 @@ class Comment
         $this->creationDate = $creationDate;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreationDateValue()
+    {
+        if ($this->creationDate == null) {
+            $this->creationDate = new \DateTime();
+        }
     }
 
     /**

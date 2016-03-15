@@ -21,6 +21,16 @@ ul.task-actions li.new {
     float: right;
 }
 
+ul.comment-list {
+    padding: 0;
+    list-style-type: none;
+}
+
+ul.comment-list li {
+    border-bottom:1px dotted #8c8c8c;
+    margin: 20px 0;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

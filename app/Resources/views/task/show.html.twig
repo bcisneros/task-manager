@@ -64,10 +64,10 @@
     </ul>
 
     <h2>Comments</h2>
-    <ul>
-        <li><a href="#" class="btn btn-primary">Add comment</a></li>
+    <ul class="task-actions">
+        <li><a href="{{ path('comment_new', { 'task_id': task.id }) }}" class="btn btn-primary">Add comment</a></li>
     </ul>
-    <ul>
+    <ul class="comment-list">
         {% for comment in task.comments %}
         <li>
             <p>{{ comment.comment }}</p>
