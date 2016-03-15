@@ -10,6 +10,8 @@ namespace TaskManagerBundle\Features;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 use TaskManagerBundle\DataFixtures\ORM\LoadInitialTaskData;
+use TaskManagerBundle\Entity\Task;
+
 
 class EditTaskFeatureTest extends WebTestCase
 {
@@ -73,10 +75,57 @@ class EditTaskFeatureTest extends WebTestCase
         $this->assertEquals("Urgent", $taskPriority);
     }
 
+    /**
+     * @test
+     */
+    public function should_update_task_values()
+    {
+        $task = new Task();
+        $task->setName("Other name");
+        $task->setCategory("Social");
+        $task->setDescription("Other description");
+        $task->setDueDate(new \DateTime('2012-12-25 15:30'));
+        $task->setPriority("Low");
+
+        $this->clickOnEditLink();
+        $editTaskForm = $this->client->getCrawler()->selectButton('Save')->form(array(
+            'task[name]' => $task->getName(),
+            'task[description]' => $task->getDescription(),
+            'task[category]' => $task->getCategory(),
+            'task[dueDate][date][year]' => 2012,
+            'task[dueDate][date][month]' => 12,
+            'task[dueDate][date][day]' => 25,
+            'task[dueDate][time][hour]' => 15,
+            'task[dueDate][time][minute]' => 30,
+            'task[priority]' => $task->getPriority()
+        ));
+        $this->client->submit($editTaskForm);
+        $this->client->followRedirect();
+        $this->isSuccessful($this->client->getResponse());
+        $this->client->request('GET', '/tasks/');
+
+        $firstTaskName = $this->getFirstRowData()->first()->text();
+        $this->assertEquals($task->getName(), $firstTaskName);
+
+        $firstTaskDescription = $this->getFirstRowData()->eq(1)->text();
+        $this->assertEquals($task->getDescription(), $firstTaskDescription);
+
+        $firstTaskDueDateString = $this->getFirstRowData()->eq(2)->text();
+        $this->assertEquals('2012-12-25 03:30 PM', $firstTaskDueDateString);
+    }
+
     private function clickOnEditLink()
     {
         $editLink = $this->client->request('GET', '/tasks/')->selectLink('Edit')->first()->link();
         $this->client->click($editLink);
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getFirstRowData()
+    {
+        return $this->client->getCrawler()->filter('table > tbody > tr')->first()->filter('td');
     }
 
 
