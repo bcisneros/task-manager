@@ -6,18 +6,18 @@ label.required {
     font-weight: bold;
 }
 
-ul.task-actions {
+ul.task-actions, ul.task-global-actions {
     padding: 0;
 }
 
-ul.task-actions li {
+ul.task-actions li, ul.task-global-actions li {
     list-style: none;
     margin: 0;
     padding: 0;
     display: inline-block;
 }
 
-ul.task-actions li.new {
+ul.task-global-actions li.new {
     float: right;
 }
 

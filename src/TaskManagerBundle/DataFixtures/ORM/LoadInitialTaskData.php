@@ -44,9 +44,19 @@ class LoadInitialTaskData implements FixtureInterface
         $pickMySonTask->setPriority("Urgent");
         $pickMySonTask->setStatus("In progress");
 
+        $soonestTask = new Task();
+        $soonestTask->setName("Soonest Task");
+        $soonestTask->setDescription("This task should appear first because have the earlier due date");
+        $soonestTask->setDueDate(new \DateTime('01-01-2016 00:00'));
+        $soonestTask->setCreationDate(new \DateTime('25-12-2015 02:16'));
+        $soonestTask->setCategory("Personal");
+        $soonestTask->setPriority("Urgent");
+        $soonestTask->setStatus("In progress");
+
         $manager->persist($sendEmailTask);
         $manager->persist($goToMarketTask);
         $manager->persist($pickMySonTask);
+        $manager->persist($soonestTask);
 
         $comment = new Comment();
         $comment->setComment("This is a test comment");
