@@ -4,6 +4,7 @@ namespace TaskManagerBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints\DateTime;
+use TaskManagerBundle\Entity\Comment;
 use TaskManagerBundle\Entity\Task;
 
 class LoadInitialTaskData implements FixtureInterface
@@ -46,6 +47,13 @@ class LoadInitialTaskData implements FixtureInterface
         $manager->persist($sendEmailTask);
         $manager->persist($goToMarketTask);
         $manager->persist($pickMySonTask);
+
+        $comment = new Comment();
+        $comment->setComment("This is a test comment");
+        $comment->setCreationDate(new \DateTime('23-01-2016'));
+        $comment->setTask($sendEmailTask);
+        $manager->persist($comment);
+
         $manager->flush();
     }
 }

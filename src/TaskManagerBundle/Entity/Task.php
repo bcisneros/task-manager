@@ -73,7 +73,7 @@ class Task
     private $status;
 
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="taskId")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="task")
      */
     protected $comments;
 

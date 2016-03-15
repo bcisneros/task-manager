@@ -62,4 +62,17 @@
             <a href="{{ path('task_index') }}" class="btn btn-default">Back to the list</a>
         </li>
     </ul>
+
+    <h2>Comments</h2>
+    <ul>
+        <li><a href="#" class="btn btn-primary">Add comment</a></li>
+    </ul>
+    <ul>
+        {% for comment in task.comments %}
+        <li>
+            <p>{{ comment.comment }}</p>
+            <cite>Published on {{ comment.creationDate | date('Y-m-d h:i A') }}</cite>
+        </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
