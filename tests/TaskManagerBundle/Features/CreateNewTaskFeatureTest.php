@@ -31,7 +31,7 @@ class CreateNewTaskFeatureTest extends WebTestCase
      */
     public function should_show_a_form_to_create_a_new_task()
     {
-        $this->assertEquals(1, $this->requestNewTaskPage()->filter('form')->count());
+        $this->assertEquals(1, $this->getNewTaskForm()->count());
     }
 
     /**
@@ -39,7 +39,7 @@ class CreateNewTaskFeatureTest extends WebTestCase
      */
     public function should_show_required_label_for_required_fields()
     {
-        $newTaskForm = $this->requestNewTaskPage()->filter('form');
+        $newTaskForm = $this->getNewTaskForm();
         $this->assertEquals('required', $newTaskForm->filter('label[for="task_name"]')->attr('class'));
         $this->assertEquals('required', $newTaskForm->filter('label')->eq(2)->attr('class'));
         $this->assertEquals('required', $newTaskForm->filter('label[for="task_priority"]')->attr('class'));
@@ -50,7 +50,7 @@ class CreateNewTaskFeatureTest extends WebTestCase
      */
     public function should_not_show_required_label_for_not_required_fields()
     {
-        $newTaskForm = $this->requestNewTaskPage()->filter('form');
+        $newTaskForm = $this->getNewTaskForm();
         $this->assertEquals('', $newTaskForm->filter('label[for="task_description"]')->attr('class'));
         $this->assertEquals('', $newTaskForm->filter('label[for="task_category"]')->attr('class'));
     }
@@ -60,7 +60,7 @@ class CreateNewTaskFeatureTest extends WebTestCase
      */
     public function should_show_uncatalogued_option_as_default_category()
     {
-        $newTaskForm = $this->requestNewTaskPage()->filter('form');
+        $newTaskForm = $this->getNewTaskForm();
         $this->assertEquals('(Uncatalogued)', $newTaskForm->filter('select#task_category > option')->text());
         $this->assertEquals('', $newTaskForm->filter('select#task_category > option')->attr('value'));
     }
@@ -70,24 +70,9 @@ class CreateNewTaskFeatureTest extends WebTestCase
      */
     public function should_show_normal_option_as_default_priority()
     {
-        $newTaskForm = $this->requestNewTaskPage()->filter('form');
+        $newTaskForm = $this->getNewTaskForm();
         $this->assertEquals('Normal', $newTaskForm->filter('select#task_priority > option[selected]')->text());
         $this->assertEquals('Normal', $newTaskForm->filter('select#task_priority > option[selected]')->attr('value'));
-    }
-
-    /**
-     *
-     * @test
-     *
-     */
-    public function should_validate_required_fields()
-    {
-        $newTaskForm = $this->requestNewTaskPage()->filter('form');
-
-        $this->markTestIncomplete('To find a better way to test validations');
-
-        //$this->assertEquals('Normal', $newTaskForm->filter('select#task_priority > option[selected]')->text());
-        //$this->assertEquals('Normal', $newTaskForm->filter('select#task_priority > option[selected]')->attr('value'));
     }
 
     /**
@@ -167,6 +152,14 @@ class CreateNewTaskFeatureTest extends WebTestCase
     private function getTableRow()
     {
         return $this->client->getCrawler()->filter(self::TASK_TABLE_ROW);
+    }
+
+    /**
+     * @return \Symfony\Component\DomCrawler\Crawler
+     */
+    private function getNewTaskForm()
+    {
+        return $this->requestNewTaskPage()->filter('form[name="task"]');
     }
 
 }

@@ -10,6 +10,7 @@ namespace TaskManagerBundle\Features;
 
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
+use TaskManagerBundle\DataFixtures\ORM\LoadInitialTaskData;
 
 class TaskListFeatureTest extends WebTestCase
 {
@@ -46,7 +47,7 @@ class TaskListFeatureTest extends WebTestCase
     public function should_list_tasks_by_due_date_by_ascending_order()
     {
         $firstTaskName = $this->requestTaskIndexPage()->filter('table > tbody > tr')->first()->filter('td')->first()->text();
-        $this->assertEquals('Soonest Task', $firstTaskName);
+        $this->assertEquals(LoadInitialTaskData::OLDEST_DUE_DATE_TASK_NAME, $firstTaskName);
 
     }
 
@@ -65,7 +66,6 @@ class TaskListFeatureTest extends WebTestCase
     {
         $totalString = $this->requestTaskIndexPage()->filter('table > tfoot > tr')->first()->filter('td')->first()->text();
         $this->assertEquals('Total: 4', $totalString);
-
     }
 
     /**

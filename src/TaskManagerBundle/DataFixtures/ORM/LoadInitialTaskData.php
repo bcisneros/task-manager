@@ -9,6 +9,7 @@ use TaskManagerBundle\Entity\Task;
 
 class LoadInitialTaskData implements FixtureInterface
 {
+    const OLDEST_DUE_DATE_TASK_NAME = "Oldest Due Date Task";
 
     /**
      * Load data fixtures with the passed EntityManager
@@ -44,24 +45,24 @@ class LoadInitialTaskData implements FixtureInterface
         $pickMySonTask->setPriority("Urgent");
         $pickMySonTask->setStatus("In progress");
 
-        $soonestTask = new Task();
-        $soonestTask->setName("Soonest Task");
-        $soonestTask->setDescription("This task should appear first because have the earlier due date");
-        $soonestTask->setDueDate(new \DateTime('01-01-2016 00:00'));
-        $soonestTask->setCreationDate(new \DateTime('25-12-2015 02:16'));
-        $soonestTask->setCategory("Personal");
-        $soonestTask->setPriority("Urgent");
-        $soonestTask->setStatus("In progress");
+        $oldestDueDateTask = new Task();
+        $oldestDueDateTask->setName(self::OLDEST_DUE_DATE_TASK_NAME);
+        $oldestDueDateTask->setDescription("This task should appear first because have the earlier due date");
+        $oldestDueDateTask->setDueDate(new \DateTime('01-01-2016 00:00'));
+        $oldestDueDateTask->setCreationDate(new \DateTime('25-12-2015 02:16'));
+        $oldestDueDateTask->setCategory("Personal");
+        $oldestDueDateTask->setPriority("Urgent");
+        $oldestDueDateTask->setStatus("In progress");
 
         $manager->persist($sendEmailTask);
         $manager->persist($goToMarketTask);
         $manager->persist($pickMySonTask);
-        $manager->persist($soonestTask);
+        $manager->persist($oldestDueDateTask);
 
         $comment = new Comment();
         $comment->setComment("This is a test comment");
         $comment->setCreationDate(new \DateTime('23-01-2016'));
-        $comment->setTask($sendEmailTask);
+        $comment->setTask($oldestDueDateTask);
         $manager->persist($comment);
 
         $manager->flush();
