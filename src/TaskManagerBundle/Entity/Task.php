@@ -80,6 +80,7 @@ class Task
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->setPriority("Normal");
     }
 
 

@@ -32,15 +32,14 @@ class TaskType extends AbstractType
                 'attr' => array('class' => 'form-control'),
                 'required' => false,
                 'placeholder' => '(Uncatalogued)',
-                'empty_data'  => null,
-                'data' => null))
+                'empty_data'  => null
+            ))
             ->add('priority', ChoiceType::class, array('choices' => array(
                 'Low' => 'Low',
                 'Normal' => 'Normal',
                 'High' => 'High',
                 'Urgent' => 'Urgent'),
-                'attr' => array('class' => 'form-control'),
-                'data' => 'Normal'
+                'attr' => array('class' => 'form-control')
             ));
     }
 

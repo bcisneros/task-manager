@@ -10,6 +10,7 @@ use TaskManagerBundle\Entity\Task;
 class LoadInitialTaskData implements FixtureInterface
 {
     const OLDEST_DUE_DATE_TASK_NAME = "Oldest Due Date Task";
+    const OLDEST_DUE_DATE_TASK_DESCRIPTION = "This task should appear first because have the earlier due date";
 
     /**
      * Load data fixtures with the passed EntityManager
@@ -47,10 +48,10 @@ class LoadInitialTaskData implements FixtureInterface
 
         $oldestDueDateTask = new Task();
         $oldestDueDateTask->setName(self::OLDEST_DUE_DATE_TASK_NAME);
-        $oldestDueDateTask->setDescription("This task should appear first because have the earlier due date");
+        $oldestDueDateTask->setDescription(self::OLDEST_DUE_DATE_TASK_DESCRIPTION);
         $oldestDueDateTask->setDueDate(new \DateTime('01-01-2016 00:00'));
         $oldestDueDateTask->setCreationDate(new \DateTime('25-12-2015 02:16'));
-        $oldestDueDateTask->setCategory("Personal");
+        $oldestDueDateTask->setCategory("Work");
         $oldestDueDateTask->setPriority("Urgent");
         $oldestDueDateTask->setStatus("In progress");
 
