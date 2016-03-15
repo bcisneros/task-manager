@@ -131,6 +131,19 @@ class CreateNewTaskFeatureTest extends WebTestCase
         $this->assertEquals('2012-12-25 03:30 PM', $firstTaskDueDateString);
     }
 
+    /**
+     * @test
+     */
+    public function should_not_insert_task_when_cancel_is_clicked()
+    {
+        $cancelLink = $this->requestNewTaskPage()
+            ->selectLink("Cancel")
+            ->link();
+        $this->client->click($cancelLink);
+        $this->isSuccessful($this->client->getResponse());
+        $this->assertEquals(0, $this->getTableRow()->count());
+    }
+
 
     /**
      * @return \Symfony\Component\DomCrawler\Crawler
@@ -145,7 +158,15 @@ class CreateNewTaskFeatureTest extends WebTestCase
      */
     private function getFirstTaskDataColumn()
     {
-        return $this->client->getCrawler()->filter(self::TASK_TABLE_ROW)->first()->filter('td');
+        return $this->getTableRow()->first()->filter('td');
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getTableRow()
+    {
+        return $this->client->getCrawler()->filter(self::TASK_TABLE_ROW);
     }
 
 }
