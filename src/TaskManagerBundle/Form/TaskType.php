@@ -26,18 +26,22 @@ class TaskType extends AbstractType
             ), 'required' => false))
             ->add('dueDate', DateTimeType::class)
             ->add('category', ChoiceType::class, array('choices' => array(
-                '(Uncatalogued)' => null,
                 'Family' => 'Family',
                 'Social' => 'Social',
                 'Work' => 'Work'),
                 'attr' => array('class' => 'form-control'),
-                'required' => false))
+                'required' => false,
+                'placeholder' => '(Uncatalogued)',
+                'empty_data'  => null,
+                'data' => null))
             ->add('priority', ChoiceType::class, array('choices' => array(
                 'Low' => 'Low',
                 'Normal' => 'Normal',
                 'High' => 'High',
                 'Urgent' => 'Urgent'),
-                'attr' => array('class' => 'form-control')));
+                'attr' => array('class' => 'form-control'),
+                'data' => 'Normal'
+            ));
     }
 
     /**
