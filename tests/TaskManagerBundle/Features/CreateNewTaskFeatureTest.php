@@ -9,6 +9,8 @@ class CreateNewTaskFeatureTest extends WebTestCase
 {
     protected $client;
 
+    const TASK_TABLE_ROW = 'table > tbody > tr';
+
     protected function setUp()
     {
         $this->loadFixtures(array());
@@ -21,7 +23,7 @@ class CreateNewTaskFeatureTest extends WebTestCase
     public function should_return_ok_when_access_to_new_task_page()
     {
         $this->requestNewTaskPage();
-        $this->assertStatusCode(200, $this->client);
+        $this->isSuccessful($this->client->getResponse());
     }
 
     /**
@@ -39,7 +41,7 @@ class CreateNewTaskFeatureTest extends WebTestCase
     {
         $newTaskForm = $this->requestNewTaskPage()->filter('form');
         $this->assertEquals('required', $newTaskForm->filter('label[for="task_name"]')->attr('class'));
-        //TODO: Check for due date
+        $this->assertEquals('required', $newTaskForm->filter('label')->eq(2)->attr('class'));
         $this->assertEquals('required', $newTaskForm->filter('label[for="task_priority"]')->attr('class'));
     }
 
@@ -117,15 +119,15 @@ class CreateNewTaskFeatureTest extends WebTestCase
 
         $this->client->submit($newTaskForm);
         $this->client->followRedirect();
-        $this->assertStatusCode(200, $this->client);
+        $this->isSuccessful($this->client->getResponse());
 
-        $firstTaskName = $this->client->getCrawler()->filter('table > tbody > tr')->first()->filter('td')->first()->text();
+        $firstTaskName = $this->getFirstTaskDataColumn()->first()->text();
         $this->assertEquals($task->getName(), $firstTaskName);
 
-        $firstTaskDescription = $this->client->getCrawler()->filter('table > tbody > tr')->first()->filter('td')->eq(1)->text();
+        $firstTaskDescription = $this->getFirstTaskDataColumn()->eq(1)->text();
         $this->assertEquals($task->getDescription(), $firstTaskDescription);
 
-        $firstTaskDueDateString = $this->client->getCrawler()->filter('table > tbody > tr')->first()->filter('td')->eq(2)->text();
+        $firstTaskDueDateString = $this->getFirstTaskDataColumn()->eq(2)->text();
         $this->assertEquals('2012-12-25 03:30 PM', $firstTaskDueDateString);
     }
 
@@ -136,6 +138,14 @@ class CreateNewTaskFeatureTest extends WebTestCase
     private function requestNewTaskPage()
     {
         return $this->client->request('GET', '/tasks/new');
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getFirstTaskDataColumn()
+    {
+        return $this->client->getCrawler()->filter(self::TASK_TABLE_ROW)->first()->filter('td');
     }
 
 }
