@@ -24,7 +24,7 @@ class TaskType extends AbstractType
             ->add('description', TextareaType::class, array('attr' => array(
                 'placeholder' => 'Introduce a more detailed description (optional)', 'class' => 'form-control'
             ), 'required' => false))
-            ->add('dueDate', DateTimeType::class)
+            ->add('dueDate', DateTimeType::class, array('widget' => 'single_text', 'format' => 'yyyy-MM-dd HH:mm', 'attr' => array('class' => 'form-control')))
             ->add('category', ChoiceType::class, array('choices' => array(
                 'Family' => 'Family',
                 'Social' => 'Social',
@@ -52,4 +52,6 @@ class TaskType extends AbstractType
             'data_class' => 'TaskManagerBundle\Entity\Task'
         ));
     }
+
+
 }

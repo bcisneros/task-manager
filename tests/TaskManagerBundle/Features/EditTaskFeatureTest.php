@@ -69,11 +69,7 @@ class EditTaskFeatureTest extends WebTestCase
             'task[name]' => $task->getName(),
             'task[description]' => $task->getDescription(),
             'task[category]' => $task->getCategory(),
-            'task[dueDate][date][year]' => 2012,
-            'task[dueDate][date][month]' => 12,
-            'task[dueDate][date][day]' => 25,
-            'task[dueDate][time][hour]' => 15,
-            'task[dueDate][time][minute]' => 30,
+            'task[dueDate]' => '2012-12-25 15:30',
             'task[priority]' => $task->getPriority()
         ));
         $this->client->submit($editTaskForm);
@@ -128,20 +124,8 @@ class EditTaskFeatureTest extends WebTestCase
         $taskDescription = $this->client->getCrawler()->filter('form[name="task"] textarea#task_description')->text();
         $this->assertEquals(LoadInitialTaskData::OLDEST_DUE_DATE_TASK_DESCRIPTION, $taskDescription);
 
-        $taskDueDateYear = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_date_year > option[selected]')->attr('value');
-        $this->assertEquals(2016, $taskDueDateYear);
-
-        $taskDueDateMonth = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_date_month > option[selected]')->attr('value');
-        $this->assertEquals(1, $taskDueDateMonth);
-
-        $taskDueDateDay = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_date_day > option[selected]')->attr('value');
-        $this->assertEquals(1, $taskDueDateDay);
-
-        $taskDueDateHour = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_time_hour > option[selected]')->attr('value');
-        $this->assertEquals(0, $taskDueDateHour);
-
-        $taskDueDateMinute = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_time_minute > option[selected]')->attr('value');
-        $this->assertEquals(0, $taskDueDateMinute);
+        $taskDueDate = $this->client->getCrawler()->filter('form[name="task"] input#task_dueDate')->attr('value');
+        $this->assertEquals('2016-01-01 00:00', $taskDueDate);
 
         $taskCategory = $this->client->getCrawler()->filter('form[name="task"] select#task_category > option[selected]')->attr('value');
         $this->assertEquals("Work", $taskCategory);

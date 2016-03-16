@@ -95,11 +95,7 @@ class CreateNewTaskFeatureTest extends WebTestCase
                 'task[name]' => $task->getName(),
                 'task[description]' => $task->getDescription(),
                 'task[category]' => $task->getCategory(),
-                'task[dueDate][date][year]' => 2012,
-                'task[dueDate][date][month]' => 12,
-                'task[dueDate][date][day]' => 25,
-                'task[dueDate][time][hour]' => 15,
-                'task[dueDate][time][minute]' => 30,
+                'task[dueDate]' => '2012-12-25 15:30'
             ));
 
         $this->client->submit($newTaskForm);
