@@ -55,10 +55,20 @@ class LoadInitialTaskData implements FixtureInterface
         $oldestDueDateTask->setPriority("Urgent");
         $oldestDueDateTask->setStatus("In progress");
 
+        $closedTask = new Task();
+        $closedTask->setName("Closed Task");
+        $closedTask->setDescription("This task is closed.");
+        $closedTask->setDueDate(new \DateTime('25-01-2016 14:30'));
+        $closedTask->setCreationDate(new \DateTime('25-01-2016 02:16'));
+        $closedTask->setCategory("Personal");
+        $closedTask->setPriority("Urgent");
+        $closedTask->setStatus("Closed");
+
         $manager->persist($sendEmailTask);
         $manager->persist($goToMarketTask);
         $manager->persist($pickMySonTask);
         $manager->persist($oldestDueDateTask);
+        $manager->persist($closedTask);
 
         $comment = new Comment();
         $comment->setComment("This is a test comment");

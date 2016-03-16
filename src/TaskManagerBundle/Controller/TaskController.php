@@ -24,7 +24,7 @@ class TaskController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $tasks = $em->getRepository('TaskManagerBundle:Task')->findAll();
+        $tasks = $em->getRepository('TaskManagerBundle:Task')->getAllNotClosedTasks();
 
         return $this->render('task/index.html.twig', array(
             'tasks' => $tasks,

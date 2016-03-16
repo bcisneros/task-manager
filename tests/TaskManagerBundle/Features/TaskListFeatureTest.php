@@ -29,7 +29,7 @@ class TaskListFeatureTest extends WebTestCase
      * @test
      */
 
-    public function should_return_all_tasks_inserted_in_the_database()
+    public function should_return_all_not_closed_tasks_inserted_in_the_database()
     {
         $tasksCounter = $this->requestTaskIndexPage()->filter('table > tbody > tr')->count();
         $this->assertEquals(4, $tasksCounter);

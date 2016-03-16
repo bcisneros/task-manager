@@ -15,4 +15,13 @@ class TaskRepository extends \Doctrine\ORM\EntityRepository
         return $this->findBy(array(), array('dueDate' => 'ASC'));
     }
 
+    public function getAllNotClosedTasks()
+    {
+        $query = $this->createQueryBuilder('t')
+            ->where("t.status != 'Closed'")
+            ->orderBy('t.dueDate', 'ASC')
+            ->getQuery();
+        return $query->getResult();
+    }
+
 }
