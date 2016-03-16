@@ -7,10 +7,12 @@
  */
 
 namespace TaskManagerBundle\Entity;
-use TaskManagerBundle\Entity\Task;
 
 
-class TaskTest extends \PHPUnit_Framework_TestCase
+use Liip\FunctionalTestBundle\Test\WebTestCase;
+
+
+class TaskTest extends WebTestCase
 {
 
     /**
