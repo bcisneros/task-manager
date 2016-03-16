@@ -15,6 +15,7 @@ use TaskManagerBundle\Entity\Task;
 
 class EditTaskFeatureTest extends WebTestCase
 {
+
     protected $client;
 
     protected function setUp()
