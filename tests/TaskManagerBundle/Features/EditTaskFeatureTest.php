@@ -48,31 +48,7 @@ class EditTaskFeatureTest extends WebTestCase
     public function should_show_task_data_in_form_values()
     {
         $this->clickOnEditLink();
-        $taskName = $this->client->getCrawler()->filter('form[name="task"] input#task_name')->attr('value');
-        $this->assertEquals(LoadInitialTaskData::OLDEST_DUE_DATE_TASK_NAME, $taskName);
-        $taskDescription = $this->client->getCrawler()->filter('form[name="task"] textarea#task_description')->text();
-        $this->assertEquals(LoadInitialTaskData::OLDEST_DUE_DATE_TASK_DESCRIPTION, $taskDescription);
-
-        $taskDueDateYear = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_date_year > option[selected]')->attr('value');
-        $this->assertEquals(2016, $taskDueDateYear);
-
-        $taskDueDateMonth = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_date_month > option[selected]')->attr('value');
-        $this->assertEquals(1, $taskDueDateMonth);
-
-        $taskDueDateDay = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_date_day > option[selected]')->attr('value');
-        $this->assertEquals(1, $taskDueDateDay);
-
-        $taskDueDateHour = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_time_hour > option[selected]')->attr('value');
-        $this->assertEquals(0, $taskDueDateHour);
-
-        $taskDueDateMinute = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_time_minute > option[selected]')->attr('value');
-        $this->assertEquals(0, $taskDueDateMinute);
-
-        $taskCategory = $this->client->getCrawler()->filter('form[name="task"] select#task_category > option[selected]')->attr('value');
-        $this->assertEquals("Work", $taskCategory);
-
-        $taskPriority = $this->client->getCrawler()->filter('form[name="task"] select#task_priority > option[selected]')->attr('value');
-        $this->assertEquals("Urgent", $taskPriority);
+        $this->validateFirstTaskData();
     }
 
     /**
@@ -114,6 +90,22 @@ class EditTaskFeatureTest extends WebTestCase
         $this->assertEquals('2012-12-25 03:30 PM', $firstTaskDueDateString);
     }
 
+    /**
+     * @test
+     */
+
+    public function should_back_to_list_when_cancel_button_is_clicked()
+    {
+        $this->clickOnEditLink();
+        $cancelLink = $this->client->getCrawler()
+            ->selectLink("Cancel")
+            ->link();
+        $this->client->click($cancelLink);
+        $this->isSuccessful($this->client->getResponse());
+        $firstTaskName = $this->client->getCrawler()->filter('table > tbody > tr')->first()->filter('td')->first()->text();
+        $this->assertEquals(LoadInitialTaskData::OLDEST_DUE_DATE_TASK_NAME, $firstTaskName);
+    }
+
     private function clickOnEditLink()
     {
         $editLink = $this->client->request('GET', '/tasks/')->selectLink('Edit')->first()->link();
@@ -126,6 +118,35 @@ class EditTaskFeatureTest extends WebTestCase
     private function getFirstRowData()
     {
         return $this->client->getCrawler()->filter('table > tbody > tr')->first()->filter('td');
+    }
+
+    private function validateFirstTaskData()
+    {
+        $taskName = $this->client->getCrawler()->filter('form[name="task"] input#task_name')->attr('value');
+        $this->assertEquals(LoadInitialTaskData::OLDEST_DUE_DATE_TASK_NAME, $taskName);
+        $taskDescription = $this->client->getCrawler()->filter('form[name="task"] textarea#task_description')->text();
+        $this->assertEquals(LoadInitialTaskData::OLDEST_DUE_DATE_TASK_DESCRIPTION, $taskDescription);
+
+        $taskDueDateYear = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_date_year > option[selected]')->attr('value');
+        $this->assertEquals(2016, $taskDueDateYear);
+
+        $taskDueDateMonth = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_date_month > option[selected]')->attr('value');
+        $this->assertEquals(1, $taskDueDateMonth);
+
+        $taskDueDateDay = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_date_day > option[selected]')->attr('value');
+        $this->assertEquals(1, $taskDueDateDay);
+
+        $taskDueDateHour = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_time_hour > option[selected]')->attr('value');
+        $this->assertEquals(0, $taskDueDateHour);
+
+        $taskDueDateMinute = $this->client->getCrawler()->filter('form[name="task"] select#task_dueDate_time_minute > option[selected]')->attr('value');
+        $this->assertEquals(0, $taskDueDateMinute);
+
+        $taskCategory = $this->client->getCrawler()->filter('form[name="task"] select#task_category > option[selected]')->attr('value');
+        $this->assertEquals("Work", $taskCategory);
+
+        $taskPriority = $this->client->getCrawler()->filter('form[name="task"] select#task_priority > option[selected]')->attr('value');
+        $this->assertEquals("Urgent", $taskPriority);
     }
 
 
