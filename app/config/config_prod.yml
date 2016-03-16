@@ -25,3 +25,13 @@ monolog:
             level: debug
         console:
             type:  console
+
+doctrine:
+    dbal:
+        driver:   pdo_pgsql
+        host:     ec2-54-225-151-64.compute-1.amazonaws.com
+        port:     5432
+        dbname:   de5jplp53rgvpa
+        user:     elkybremcembak
+        password: wIfTcyweN8jLX3DeKECprbneKz
+        charset:  UTF8
