@@ -46,14 +46,16 @@
     <ul class="task-actions">
         {% if task.status != 'Closed' %}
             <li>
-                <a href="{{ path('task_change_status', { 'id': task.id }) }}" class="btn btn-success">{% if task.status == 'New' %}Start{% else %}Close{% endif %} task</a>
+                <a href="{{ path('task_change_status', { 'id': task.id }) }}"
+                   class="btn btn-success">{% if task.status == 'New' %}Start{% else %}Close{% endif %} task</a>
             </li>
         {% endif %}
         <li>
             <a href="{{ path('task_edit', { 'id': task.id }) }}" class="btn btn-primary">Edit</a>
         </li>
         <li>
-            <a href="{{ path('task_delete', { 'id': task.id }) }}" class="btn btn-danger" onclick="return confirm('Are you sure to delete this task?');">Remove</a>
+            <a href="{{ path('task_delete', { 'id': task.id }) }}" class="btn btn-danger"
+               onclick="return confirm('Are you sure to delete this task?');">Remove</a>
         </li>
         <li>
             <a href="{{ path('task_index') }}" class="btn btn-default">Back to the list</a>
@@ -64,12 +66,17 @@
     <ul class="task-actions">
         <li><a href="{{ path('comment_new', { 'task_id': task.id }) }}" class="btn btn-primary">Add comment</a></li>
     </ul>
-    <ul class="comment-list">
-        {% for comment in task.comments %}
-        <li>
-            <p>{{ comment.comment }}</p>
-            <cite>Published on {{ comment.creationDate | date('Y-m-d h:i A') }}</cite>
-        </li>
-        {% endfor %}
-    </ul>
+    {% if  task.comments.empty %}
+        <p>No comments yet.</p>
+    {% else %}
+        <ul class="comment-list">
+            {% for comment in task.comments %}
+                <li>
+                    <p>{{ comment.comment }}</p>
+                    <cite>Published on {{ comment.creationDate | date('Y-m-d h:i A') }}</cite>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
 {% endblock %}
