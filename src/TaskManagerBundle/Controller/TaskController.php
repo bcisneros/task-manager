@@ -101,24 +101,6 @@ class TaskController extends Controller
     }
 
     /**
-     * Deletes a Task entity.
-     *
-     * @Route("/{id}", name="task_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Task $task)
-    {
-        $form = $this->createDeleteForm($task);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->deleteTask($task);
-        }
-
-        return $this->redirectToRoute('task_index');
-    }
-
-    /**
      * @Route("/{id}/delete", name="task_delete")
      * @Method("GET")
      */
