@@ -58,6 +58,32 @@ class ShowTaskDetailsFeatureTest extends WebTestCase
 
     }
 
+    /**
+     * @test
+     */
+    public function should_execute_delete_task_when_remove_button_is_clicked()
+    {
+        $this->clickOnTaskDetailsLink();
+        $crawler = $this->client->getCrawler();
+        $removeTaskLink = $crawler->selectLink('Remove')->link();
+        $this->client->click($removeTaskLink);
+        $this->client->followRedirect();
+        $this->isSuccessful($this->client->getResponse());
+    }
+
+    /**
+     * @test
+     */
+    public function should_redirect_to_edit_page_when_edit_link_is_clicked()
+    {
+        $this->clickOnTaskDetailsLink();
+        $crawler = $this->client->getCrawler();
+        $editTaskLink = $crawler->selectLink('Edit')->link();
+        $this->client->click($editTaskLink);
+        $editTaskTitle = $this->client->getCrawler()->filter('h2')->text();
+        $this->assertEquals('Edit task "' . LoadInitialTaskData::OLDEST_DUE_DATE_TASK_NAME . '"', $editTaskTitle);
+    }
+
     private function clickOnTaskDetailsLink()
     {
         $taskDetailsLink = $this->client->request('GET', '/tasks/')->selectLink('Details')->first()->link();
