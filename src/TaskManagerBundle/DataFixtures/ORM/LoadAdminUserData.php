@@ -22,7 +22,10 @@ class LoadAdminUserData extends AbstractFixture implements FixtureInterface
         $admin = new User();
         $admin->setUsername('admin');
         $admin->setPassword('admin');
+        $admin->setPlainPassword('admin');
         $admin->setEmail('admin@test.com');
+        $admin->setEnabled(true);
+        $admin->setSuperAdmin(true);
         $manager->persist($admin);
         $this->addReference('admin', $admin);
         $manager->flush();

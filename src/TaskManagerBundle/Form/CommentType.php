@@ -16,11 +16,7 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('comment', TextareaType::class, array('attr' => array('class' => 'form-control')))
-            //->add('creationDate', DateTimeType::class)
-            //->add('taskId')
-            //->add('task')
-        ;
+            ->add('comment', TextareaType::class, array('attr' => array('class' => 'form-control')));
     }
 
     /**
