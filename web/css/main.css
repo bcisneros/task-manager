@@ -62,14 +62,6 @@ address {
 
 }
 
-.header {
-    background: #0f0f0f;
-    position: relative;
-    width: 100%;
-    top: 0;
-    color: #dff0d8;
-}
-
 h1 a, h1 a:hover, h1 a:active, h1 a:visited {
     text-decoration: none;
     color: inherit;
@@ -79,7 +71,7 @@ span.version {
     font-size: medium;
 }
 
-form.login {
+form.login, form.fos_user_registration_register {
     border: 1px solid #8c8c8c;
     border-radius: 10px;
     padding: 20px;
@@ -90,4 +82,9 @@ form.login {
 form.login input[type=submit] {
     display: block;
     margin: 10px auto;
+}
+
+div.content {
+    position: fixed;
+    top: 100px;
 }
