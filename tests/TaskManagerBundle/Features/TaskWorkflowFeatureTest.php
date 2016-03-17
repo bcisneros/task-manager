@@ -12,7 +12,9 @@ class TaskWorkflowFeatureTest extends WebTestCase
 
     protected function setUp()
     {
-        $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadWorkflowTaskData'));
+        $fixtures = $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData',
+            'TaskManagerBundle\DataFixtures\ORM\LoadWorkflowTaskData'))->getReferenceRepository();
+        $this->loginAs($fixtures->getReference('admin'), 'main');
         $this->client = static::makeClient();
     }
 

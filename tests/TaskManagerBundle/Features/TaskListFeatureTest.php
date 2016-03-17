@@ -9,9 +9,14 @@ use TaskManagerBundle\DataFixtures\ORM\LoadInitialTaskData;
 
 class TaskListFeatureTest extends WebTestCase
 {
+    protected $client;
+
     protected function setUp()
     {
-        $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadInitialTaskData'));
+        $fixtures = $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData',
+            'TaskManagerBundle\DataFixtures\ORM\LoadInitialTaskData'))->getReferenceRepository();
+        $this->loginAs($fixtures->getReference('admin'), 'main');
+        $this->client = static::makeClient();
     }
 
     /**
@@ -20,9 +25,15 @@ class TaskListFeatureTest extends WebTestCase
 
     public function should_return_ok_when_access_to_index_page()
     {
-        $client = static::makeClient();
-        $client->request('GET', '/tasks/');
-        $this->assertStatusCode(200, $client);
+        /*
+        $credentials = array(
+            'username' => 'admin',
+            'password' => '$2y$13$UJ6yciuk5vskwR5JpO8DL.ILbZCwC4orlyXlxI4x97W095ayAPcDm'
+        );
+        $client = static::makeClient($credentials);
+        */
+        $this->client->request('GET', '/tasks/');
+        $this->assertStatusCode(200, $this->client);
     }
 
     /**
@@ -78,6 +89,6 @@ class TaskListFeatureTest extends WebTestCase
      */
     private function requestTaskIndexPage()
     {
-        return static::makeClient()->request('GET', '/tasks/');
+        return static::makeClient(true)->request('GET', '/tasks/');
     }
 }

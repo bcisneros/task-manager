@@ -11,6 +11,7 @@ use TaskManagerBundle\Entity\Task;
 /**
  * Task controller.
  * @Route("/tasks")
+ *
  */
 class TaskController extends Controller
 {
