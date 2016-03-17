@@ -11,17 +11,26 @@
     </head>
     <body>
         <div class="header">
-            <header class="container">
-                <h1><a href="{{ path("homepage") }}">Task Manager <span class="version">1.2</span></a></h1>
-                <ul class="user-actions">
-                    {% if app.user %}
-                    <li>
-
-                        <a href="{{ path('fos_user_security_logout') }}">Logout</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </header>
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{ path("homepage") }}">Task Manager <span class="version">1.2</span></a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+                            </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav>
         </div>
         <div class="container">
             {% block body %}{% endblock %}
