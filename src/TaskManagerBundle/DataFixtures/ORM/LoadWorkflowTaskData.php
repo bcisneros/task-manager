@@ -1,13 +1,15 @@
 <?php
 
 namespace TaskManagerBundle\DataFixtures\ORM;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints\DateTime;
 use TaskManagerBundle\Entity\Comment;
 use TaskManagerBundle\Entity\Task;
+use TaskManagerBundle\Entity\User;
 
-class LoadWorkFlowTaskData implements FixtureInterface
+class LoadWorkFlowTaskData extends AbstractFixture implements FixtureInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
@@ -34,7 +36,6 @@ class LoadWorkFlowTaskData implements FixtureInterface
         $manager->persist($newStatusTask);
         $manager->persist($inProgressTask);
         $manager->persist($closedTask);
-
 
         $manager->flush();
     }

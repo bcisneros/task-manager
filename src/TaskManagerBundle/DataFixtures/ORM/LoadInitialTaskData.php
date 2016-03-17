@@ -6,8 +6,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Validator\Constraints\DateTime;
 use TaskManagerBundle\Entity\Comment;
 use TaskManagerBundle\Entity\Task;
+use TaskManagerBundle\Entity\User;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 
-class LoadInitialTaskData implements FixtureInterface
+class LoadInitialTaskData extends AbstractFixture implements FixtureInterface
 {
     const OLDEST_DUE_DATE_TASK_NAME = "Oldest Due Date Task";
     const OLDEST_DUE_DATE_TASK_DESCRIPTION = "This task should appear first because have the earlier due date";

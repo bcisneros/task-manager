@@ -13,8 +13,9 @@ class CreateNewTaskFeatureTest extends WebTestCase
 
     protected function setUp()
     {
-        $this->loadFixtures(array());
-        $this->client = static::makeClient();
+        $fixtures = $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData'))->getReferenceRepository();
+        $this->loginAs($fixtures->getReference('admin'), 'main');
+        $this->client = static::makeClient(true);
     }
 
     /**

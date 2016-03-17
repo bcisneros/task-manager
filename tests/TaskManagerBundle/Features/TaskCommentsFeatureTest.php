@@ -11,7 +11,9 @@ class TaskCommentsFeatureTest extends WebTestCase
 
     protected function setUp()
     {
-        $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadTaskCommentsData'));
+        $fixtures = $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData',
+            'TaskManagerBundle\DataFixtures\ORM\LoadTaskCommentsData'))->getReferenceRepository();
+        $this->loginAs($fixtures->getReference('admin'), 'main');
         $this->client = static::makeClient();
     }
 

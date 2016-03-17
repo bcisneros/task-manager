@@ -1,6 +1,6 @@
 $(function() {
     $( "#task_dueDate" ).datetimepicker({
-        timeFormat: 'hh:mm',
+        timeFormat: 'HH:mm',
         numberOfMonths: 1,
         dateFormat: 'yy-mm-dd',
         showButtonPanel: true

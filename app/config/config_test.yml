@@ -4,7 +4,9 @@ imports:
 framework:
     test: ~
     session:
-        storage_id: session.storage.mock_file
+        handler_id:  ~
+        storage_id: session.storage.filesystem
+        name: MOCKSESSID
     profiler:
         collect: false
 
@@ -17,6 +19,9 @@ swiftmailer:
 
 liip_functional_test:
     cache_sqlite_db: true
+    authentication:
+        username: "admin"
+        password: "admin"
 
 doctrine:
     dbal:

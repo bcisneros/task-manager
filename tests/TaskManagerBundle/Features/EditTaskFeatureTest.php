@@ -20,7 +20,9 @@ class EditTaskFeatureTest extends WebTestCase
 
     protected function setUp()
     {
-        $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadInitialTaskData'));
+        $fixtures = $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData',
+            'TaskManagerBundle\DataFixtures\ORM\LoadInitialTaskData'))->getReferenceRepository();
+        $this->loginAs($fixtures->getReference('admin'), 'main');
         $this->client = static::makeClient();
     }
 
