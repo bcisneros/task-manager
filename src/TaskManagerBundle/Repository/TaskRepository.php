@@ -1,6 +1,7 @@
 <?php
 
 namespace TaskManagerBundle\Repository;
+use TaskManagerBundle\Entity\User;
 
 /**
  * TaskRepository
@@ -15,11 +16,13 @@ class TaskRepository extends \Doctrine\ORM\EntityRepository
         return $this->findBy(array(), array('dueDate' => 'ASC'));
     }
 
-    public function getAllNotClosedTasks()
+    public function getAllNotClosedTasks(User $user)
     {
         $query = $this->createQueryBuilder('t')
             ->where("t.status != 'Closed'")
+            ->andWhere('t.user = :user')
             ->orderBy('t.dueDate', 'ASC')
+            ->setParameter('user', $user)
             ->getQuery();
         return $query->getResult();
     }

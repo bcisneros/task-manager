@@ -24,8 +24,8 @@ class TaskController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $tasks = $em->getRepository('TaskManagerBundle:Task')->getAllNotClosedTasks();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $tasks = $em->getRepository('TaskManagerBundle:Task')->getAllNotClosedTasks($user);
 
         return $this->render('task/index.html.twig', array(
             'tasks' => $tasks,
@@ -46,6 +46,7 @@ class TaskController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $task->setUser($this->get('security.token_storage')->getToken()->getUser());
             $em->persist($task);
             $em->flush();
 

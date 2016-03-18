@@ -77,6 +77,19 @@ class Task
      */
     protected $comments;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=true)
+     */
+    private $userId;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="tasks")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    protected $user;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -326,5 +339,53 @@ class Task
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     *
+     * @return Task
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId
+     *
+     * @return integer
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \TaskManagerBundle\Entity\User $user
+     *
+     * @return Task
+     */
+    public function setUser(\TaskManagerBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \TaskManagerBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
