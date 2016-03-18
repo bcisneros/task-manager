@@ -26,6 +26,30 @@
                 <source>user.welcome.msg</source>
                 <target>Welcome %user%</target>
             </trans-unit>
+            <trans-unit id="task.list.title">
+                <source>task.list.title</source>
+                <target>Pending tasks</target>
+            </trans-unit>
+            <trans-unit id="task.link.new">
+                <source>task.link.new</source>
+                <target>New task</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.name">
+                <source>task.table.header.name</source>
+                <target>Task Name</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.description">
+                <source>task.table.header.description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.due_date">
+                <source>task.table.header.due_date</source>
+                <target>Due date</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.actions">
+                <source>task.table.header.actions</source>
+                <target>Actions</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
