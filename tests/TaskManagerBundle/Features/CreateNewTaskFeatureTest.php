@@ -15,6 +15,8 @@ class CreateNewTaskFeatureTest extends WebTestCase
 
     const TASK_DESCRIPTION_EQUAL_TO_255_CHARACTERS = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut luctus ex. Phasellus purus diam, molestie quis arcu nec, interdum lobortis lectus. Duis quis orci sit amet urna vulputate luctus. In pulvinar purus vitae purus ornare, ac congue erat metus.";
 
+    const TASK_LIST_ROUTE = 'en/tasks/new';
+
     protected function setUp()
     {
         $fixtures = $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData'))->getReferenceRepository();
@@ -154,7 +156,7 @@ class CreateNewTaskFeatureTest extends WebTestCase
      */
     private function requestNewTaskPage()
     {
-        return $this->client->request('GET', '/tasks/new');
+        return $this->client->request('GET', self::TASK_LIST_ROUTE);
     }
 
     /**

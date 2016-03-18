@@ -13,6 +13,8 @@ use TaskManagerBundle\DataFixtures\ORM\LoadInitialTaskData;
 
 class DeleteTaskFeatureTest extends WebTestCase
 {
+    const TASK_LIST_ROUTE = 'en/tasks/';
+
     protected function setUp()
     {
         $fixtures = $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData',
@@ -26,7 +28,7 @@ class DeleteTaskFeatureTest extends WebTestCase
     public function should_delete_a_task_without_comments()
     {
         $client = static::makeClient();
-        $deleteTaskLink = $client->request('GET', '/tasks/')
+        $deleteTaskLink = $client->request('GET', self::TASK_LIST_ROUTE)
             ->selectLink("Remove")->eq(1)
             ->link();
         $client->click($deleteTaskLink);
@@ -41,7 +43,7 @@ class DeleteTaskFeatureTest extends WebTestCase
     public function should_delete_a_task_with_comments()
     {
         $client = static::makeClient();
-        $deleteTaskLink = $client->request('GET', '/tasks/')
+        $deleteTaskLink = $client->request('GET', self::TASK_LIST_ROUTE)
             ->selectLink("Remove")->first()
             ->link();
         $client->click($deleteTaskLink);
@@ -56,7 +58,7 @@ class DeleteTaskFeatureTest extends WebTestCase
     public function should_delete_a_task_from_show_details_page()
     {
         $client = static::makeClient();
-        $deleteTaskLink = $client->request('GET', '/tasks/')
+        $deleteTaskLink = $client->request('GET', self::TASK_LIST_ROUTE)
             ->selectLink("Details")->first()
             ->link();
         $client->click($deleteTaskLink);

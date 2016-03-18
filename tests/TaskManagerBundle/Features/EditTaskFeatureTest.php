@@ -18,6 +18,8 @@ class EditTaskFeatureTest extends WebTestCase
 
     protected $client;
 
+    const TASK_LIST_ROUTE = 'en/tasks/';
+
     protected function setUp()
     {
         $fixtures = $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData',
@@ -77,7 +79,7 @@ class EditTaskFeatureTest extends WebTestCase
         $this->client->submit($editTaskForm);
         $this->client->followRedirect();
         $this->isSuccessful($this->client->getResponse());
-        $this->client->request('GET', '/tasks/');
+        $this->client->request('GET', self::TASK_LIST_ROUTE);
 
         $firstTaskName = $this->getFirstRowData()->first()->text();
         $this->assertEquals($task->getName(), $firstTaskName);
@@ -107,7 +109,7 @@ class EditTaskFeatureTest extends WebTestCase
 
     private function clickOnEditLink()
     {
-        $editLink = $this->client->request('GET', '/tasks/')->selectLink('Edit')->first()->link();
+        $editLink = $this->client->request('GET', self::TASK_LIST_ROUTE)->selectLink('Edit')->first()->link();
         $this->client->click($editLink);
     }
 

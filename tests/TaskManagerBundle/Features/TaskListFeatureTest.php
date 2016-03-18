@@ -11,6 +11,8 @@ class TaskListFeatureTest extends WebTestCase
 {
     protected $client;
 
+    const TASK_LIST_ROUTE = 'en/tasks/';
+
     protected function setUp()
     {
         $fixtures = $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData',
@@ -25,7 +27,7 @@ class TaskListFeatureTest extends WebTestCase
 
     public function should_return_ok_when_access_to_index_page()
     {
-        $this->client->request('GET', '/tasks/');
+        $this->client->request('GET', self::TASK_LIST_ROUTE);
         $this->assertStatusCode(200, $this->client);
     }
 
@@ -82,6 +84,6 @@ class TaskListFeatureTest extends WebTestCase
      */
     private function requestTaskIndexPage()
     {
-        return static::makeClient(true)->request('GET', '/tasks/');
+        return static::makeClient(true)->request('GET', self::TASK_LIST_ROUTE);
     }
 }
