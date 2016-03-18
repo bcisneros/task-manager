@@ -4,7 +4,7 @@ namespace TaskManagerBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Task
  *
@@ -34,6 +34,10 @@ class Task
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Task description cannot be longer than {{ limit }} characters")
+     *
      */
     private $description;
 
