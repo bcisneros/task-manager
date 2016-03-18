@@ -82,7 +82,6 @@ class RegisterNewUserFeatureTest extends WebTestCase
     private function redirectToLoginPage()
     {
         $this->goHomePageAndRedirect();
-        $this->client->followRedirect();
     }
 
     private function assertElementIsPresentInPage($elementToFind, $times)
@@ -94,6 +93,5 @@ class RegisterNewUserFeatureTest extends WebTestCase
     private function goHomePageAndRedirect()
     {
         $this->client->request('GET', '/');
-        $this->client->followRedirect();
     }
 }
