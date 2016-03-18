@@ -16,3 +16,4 @@
 /web/bundles/
 .idea/workspace.xml
 *.php~
+web/debug.html

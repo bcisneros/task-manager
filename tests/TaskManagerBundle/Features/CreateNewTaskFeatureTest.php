@@ -11,6 +11,10 @@ class CreateNewTaskFeatureTest extends WebTestCase
 
     const TASK_TABLE_ROW = 'table > tbody > tr';
 
+    const TASK_DESCRIPTION_LARGER_THAN_255_CHARACTERS = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id aliquet mi, quis facilisis sapien. Nulla eget consequat nulla. Aenean tincidunt velit mauris, et convallis elit tempus a. Morbi lectus ipsum, tincidunt at efficitur in, finibus ac odio. Proin eu arcu in felis tincidunt viverra. Ut eu libero ut dui pellentesque laoreet. Integer suscipit tortor et aliquet viverra. Sed faucibus nec dolor a vehicula. Morbi vitae lectus porta, ullamcorper libero quis, efficitur tortor.';
+
+    const TASK_DESCRIPTION_EQUAL_TO_255_CHARACTERS = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut luctus ex. Phasellus purus diam, molestie quis arcu nec, interdum lobortis lectus. Duis quis orci sit amet urna vulputate luctus. In pulvinar purus vitae purus ornare, ac congue erat metus.";
+
     protected function setUp()
     {
         $fixtures = $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData'))->getReferenceRepository();
@@ -83,34 +87,8 @@ class CreateNewTaskFeatureTest extends WebTestCase
      */
     public function should_create_a_task_and_assign_to_the_current_user_and_redirect_to_list_page()
     {
-        $task = new Task();
-        $task->setName("New Task");
-        $task->setCategory("Work");
-        $task->setDescription("This task will be created");
-        $task->setDueDate(new \DateTime('2012-12-25 15:30'));
-        $task->setPriority("Normal");
-
-        $newTaskForm = $this->requestNewTaskPage()
-            ->selectButton("Create")
-            ->form(array(
-                'task[name]' => $task->getName(),
-                'task[description]' => $task->getDescription(),
-                'task[category]' => $task->getCategory(),
-                'task[dueDate]' => '2012-12-25 15:30'
-            ));
-
-        $this->client->submit($newTaskForm);
-        $this->client->followRedirect();
-        $this->isSuccessful($this->client->getResponse());
-
-        $firstTaskName = $this->getFirstTaskDataColumn()->first()->text();
-        $this->assertEquals($task->getName(), $firstTaskName);
-
-        $firstTaskDescription = $this->getFirstTaskDataColumn()->eq(1)->text();
-        $this->assertEquals($task->getDescription(), $firstTaskDescription);
-
-        $firstTaskDueDateString = $this->getFirstTaskDataColumn()->eq(2)->text();
-        $this->assertEquals('2012-12-25 03:30 PM', $firstTaskDueDateString);
+        $task = $this->createTask("This task will be created");
+        $this->validateTaskIsCreated($task);
     }
 
     /**
@@ -124,6 +102,50 @@ class CreateNewTaskFeatureTest extends WebTestCase
         $this->client->click($cancelLink);
         $this->isSuccessful($this->client->getResponse());
         $this->assertEquals(0, $this->getTableRow()->count());
+    }
+
+    /**
+     * @test
+     */
+
+    public function should_not_throw_500_error_when_create_task_with_description_greater_than_255_characters()
+    {
+        $this->createTask(self::TASK_DESCRIPTION_LARGER_THAN_255_CHARACTERS);
+        $this->assertValidationErrors(array('data.description'), $this->client->getContainer());
+        $this->isSuccessful($this->client->getResponse());
+    }
+
+    /**
+     *
+     * @test
+     *
+     */
+    public function should_create_a_task_for_description_equals_to_255_characters()
+    {
+        $task = $this->createTask(self::TASK_DESCRIPTION_EQUAL_TO_255_CHARACTERS);
+        $this->validateTaskIsCreated($task);
+    }
+
+    /**
+     *
+     * @test
+     *
+     */
+    public function should_create_a_task_for_description_less_than_255_characters()
+    {
+        $task = $this->createTask('A short description');
+        $this->validateTaskIsCreated($task);
+    }
+
+    /**
+     *
+     * @test
+     *
+     */
+    public function should_create_a_task_for_null_description()
+    {
+        $task = $this->createTask(null);
+        $this->validateTaskIsCreated($task);
     }
 
 
@@ -157,6 +179,60 @@ class CreateNewTaskFeatureTest extends WebTestCase
     private function getNewTaskForm()
     {
         return $this->requestNewTaskPage()->filter('form[name="task"]');
+    }
+
+    /**
+     * Use this function when you want to debug and see on the html in the browser
+     * Browse http://localhost:8000/debug.html or whatever name you provide
+     * @param string $name
+     */
+
+    protected function createDebugFile($name = 'debug.html')
+    {
+        $debugFile = fopen("../../../web/$name", "w") or die("Unable to open file!");
+        fwrite($debugFile, $this->client->getResponse()->getContent());
+        fclose($debugFile);
+    }
+
+    private function createTask($description = null)
+    {
+        $task = new Task();
+        $task->setName("New Task");
+        $task->setCategory("Work");
+        $task->setDescription($description);
+        $task->setDueDate(new \DateTime('2012-12-25 15:30'));
+        $task->setPriority("Normal");
+
+        $newTaskForm = $this->requestNewTaskPage()
+            ->selectButton("Create")
+            ->form(array(
+                'task[name]' => $task->getName(),
+                'task[description]' => $task->getDescription(),
+                'task[category]' => $task->getCategory(),
+                'task[dueDate]' => '2012-12-25 15:30'
+            ));
+
+        $this->client->submit($newTaskForm);
+
+        return $task;
+    }
+
+    /**
+     * @param $task
+     */
+    private function validateTaskIsCreated($task)
+    {
+        $this->client->followRedirect();
+        $this->isSuccessful($this->client->getResponse());
+
+        $firstTaskName = $this->getFirstTaskDataColumn()->first()->text();
+        $this->assertEquals($task->getName(), $firstTaskName);
+
+        $firstTaskDescription = $this->getFirstTaskDataColumn()->eq(1)->text();
+        $this->assertEquals($task->getDescription(), $firstTaskDescription);
+
+        $firstTaskDueDateString = $this->getFirstTaskDataColumn()->eq(2)->text();
+        $this->assertEquals('2012-12-25 03:30 PM', $firstTaskDueDateString);
     }
 
 }
