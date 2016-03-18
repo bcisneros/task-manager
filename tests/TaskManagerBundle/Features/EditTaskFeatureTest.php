@@ -69,6 +69,7 @@ class EditTaskFeatureTest extends WebTestCase
         $task->setPriority("Low");
 
         $this->clickOnEditLink();
+
         $editTaskForm = $this->client->getCrawler()->selectButton('Save')->form(array(
             'task[name]' => $task->getName(),
             'task[description]' => $task->getDescription(),
@@ -79,7 +80,6 @@ class EditTaskFeatureTest extends WebTestCase
         $this->client->submit($editTaskForm);
         $this->client->followRedirect();
         $this->isSuccessful($this->client->getResponse());
-        $this->client->request('GET', self::TASK_LIST_ROUTE);
 
         $firstTaskName = $this->getFirstRowData()->first()->text();
         $this->assertEquals($task->getName(), $firstTaskName);
@@ -136,6 +136,19 @@ class EditTaskFeatureTest extends WebTestCase
 
         $taskPriority = $this->client->getCrawler()->filter('form[name="task"] select#task_priority > option[selected]')->attr('value');
         $this->assertEquals("Urgent", $taskPriority);
+    }
+
+    /**
+     * Use this function when you want to debug and see on the html in the browser
+     * Browse http://localhost:8000/debug.html or whatever name you provide
+     * @param string $name
+     */
+
+    protected function createDebugFile($name = 'debug.html')
+    {
+        $debugFile = fopen("../../../web/debug/$name", "w") or die("Unable to open file!");
+        fwrite($debugFile, $this->client->getResponse()->getContent());
+        fclose($debugFile);
     }
 
 
