@@ -26,18 +26,18 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     {% if app.user %}
-                        <li class="welcome"><a href="#">Welcome {{ app.user }}</a></li>
+                        <li class="welcome"><a href="#">{{'user.welcome.msg' | trans ({'%user%':app.user}) }}</a></li>
                         <li>
-                            <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+                            <a href="{{ path('fos_user_security_logout') }}">{{ 'link.logout'|trans }}</a>
                         </li>
                     {% endif %}
 
                     {% if not app.user %}
                         <li>
-                            <a href="{{ path('fos_user_security_login') }}">Login</a>
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'link.login'|trans }}</a>
                         </li>
                         <li>
-                            <a href="{{ path('fos_user_registration_register') }}">Create an account</a>
+                            <a href="{{ path('fos_user_registration_register') }}">{{ 'link.new_user'|trans }}</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -52,7 +52,7 @@
 </div>
 
 <footer class="footer">
-    <address>Developers Delicias 2016. All rights reserved.</address>
+    <address>{{ 'copyright' | trans }}</address>
 </footer>
 {% block javascripts %}{% endblock %}
 </body>
