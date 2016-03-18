@@ -2,6 +2,7 @@
 
 namespace TaskManagerBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -18,8 +19,48 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\OneToMany(targetEntity="TaskManagerBundle\Entity\Task", mappedBy="user")
+     */
+    protected $tasks;
+
     public function __construct()
     {
         parent::__construct();
+        $this->tasks = new ArrayCollection();
+    }
+
+    /**
+     * Add task
+     *
+     * @param \TaskManagerBundle\Entity\Task $task
+     *
+     * @return User
+     */
+    public function addTask(\TaskManagerBundle\Entity\Task $task)
+    {
+        $this->tasks[] = $task;
+
+        return $this;
+    }
+
+    /**
+     * Remove task
+     *
+     * @param \TaskManagerBundle\Entity\Task $task
+     */
+    public function removeTask(\TaskManagerBundle\Entity\Task $task)
+    {
+        $this->tasks->removeElement($task);
+    }
+
+    /**
+     * Get tasks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTasks()
+    {
+        return $this->tasks;
     }
 }

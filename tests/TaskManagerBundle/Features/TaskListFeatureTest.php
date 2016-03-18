@@ -25,13 +25,6 @@ class TaskListFeatureTest extends WebTestCase
 
     public function should_return_ok_when_access_to_index_page()
     {
-        /*
-        $credentials = array(
-            'username' => 'admin',
-            'password' => '$2y$13$UJ6yciuk5vskwR5JpO8DL.ILbZCwC4orlyXlxI4x97W095ayAPcDm'
-        );
-        $client = static::makeClient($credentials);
-        */
         $this->client->request('GET', '/tasks/');
         $this->assertStatusCode(200, $this->client);
     }
@@ -40,7 +33,7 @@ class TaskListFeatureTest extends WebTestCase
      * @test
      */
 
-    public function should_return_all_not_closed_tasks_inserted_in_the_database()
+    public function should_return_all_not_closed_tasks_inserted_in_the_database_for_logged_in_user()
     {
         $tasksCounter = $this->requestTaskIndexPage()->filter('table > tbody > tr')->count();
         $this->assertEquals(4, $tasksCounter);

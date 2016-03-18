@@ -21,6 +21,8 @@ class LoadInitialTaskData extends AbstractFixture implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        $loggedInUser = $this->getReference("admin");
+
         $sendEmailTask = new Task();
         $sendEmailTask->setName("Send email");
         $sendEmailTask->setDescription("Send sales report to manager@company.com");
@@ -29,6 +31,7 @@ class LoadInitialTaskData extends AbstractFixture implements FixtureInterface
         $sendEmailTask->setCategory("Work");
         $sendEmailTask->setPriority("Normal");
         $sendEmailTask->setStatus("New");
+        $sendEmailTask->setUser($loggedInUser);
 
         $goToMarketTask = new Task();
         $goToMarketTask->setName("Go to Market");
@@ -38,6 +41,7 @@ class LoadInitialTaskData extends AbstractFixture implements FixtureInterface
         $goToMarketTask->setCategory("Home");
         $goToMarketTask->setPriority("Low");
         $goToMarketTask->setStatus("New");
+        $goToMarketTask->setUser($loggedInUser);
 
         $pickMySonTask = new Task();
         $pickMySonTask->setName("Pick my son");
@@ -47,6 +51,7 @@ class LoadInitialTaskData extends AbstractFixture implements FixtureInterface
         $pickMySonTask->setCategory("Personal");
         $pickMySonTask->setPriority("Urgent");
         $pickMySonTask->setStatus("In progress");
+        $pickMySonTask->setUser($loggedInUser);
 
         $oldestDueDateTask = new Task();
         $oldestDueDateTask->setName(self::OLDEST_DUE_DATE_TASK_NAME);
@@ -56,6 +61,7 @@ class LoadInitialTaskData extends AbstractFixture implements FixtureInterface
         $oldestDueDateTask->setCategory("Work");
         $oldestDueDateTask->setPriority("Urgent");
         $oldestDueDateTask->setStatus("In progress");
+        $oldestDueDateTask->setUser($loggedInUser);
 
         $closedTask = new Task();
         $closedTask->setName("Closed Task");
@@ -65,12 +71,24 @@ class LoadInitialTaskData extends AbstractFixture implements FixtureInterface
         $closedTask->setCategory("Personal");
         $closedTask->setPriority("Urgent");
         $closedTask->setStatus("Closed");
+        $closedTask->setUser($loggedInUser);
+
+        $anotherUserTask = new Task();
+        $anotherUserTask->setName("Another user task");
+        $anotherUserTask->setDescription("Another user task");
+        $anotherUserTask->setDueDate(new \DateTime('25-01-2016 14:30'));
+        $anotherUserTask->setCreationDate(new \DateTime('25-01-2016 02:16'));
+        $anotherUserTask->setCategory("Personal");
+        $anotherUserTask->setPriority("Urgent");
+        $anotherUserTask->setStatus("In progress");
+        $anotherUserTask->setUser(null);
 
         $manager->persist($sendEmailTask);
         $manager->persist($goToMarketTask);
         $manager->persist($pickMySonTask);
         $manager->persist($oldestDueDateTask);
         $manager->persist($closedTask);
+        $manager->persist($anotherUserTask);
 
         $comment = new Comment();
         $comment->setComment("This is a test comment");

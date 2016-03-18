@@ -81,7 +81,7 @@ class CreateNewTaskFeatureTest extends WebTestCase
      * @test
      *
      */
-    public function should_create_a_task_and_redirect_to_list_page()
+    public function should_create_a_task_and_assign_to_the_current_user_and_redirect_to_list_page()
     {
         $task = new Task();
         $task->setName("New Task");
