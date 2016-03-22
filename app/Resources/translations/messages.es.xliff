@@ -114,6 +114,26 @@
                 <source>task.details.comments.empty</source>
                 <target>No hay comentarios aún.</target>
             </trans-unit>
+            <trans-unit id="task.edit.title">
+                <source>task.edit.title</source>
+                <target>Editar tarea "%task%"</target>
+            </trans-unit>
+            <trans-unit id="global.actions.save">
+                <source>global.actions.save</source>
+                <target>Guardar</target>
+            </trans-unit>
+            <trans-unit id="global.actions.create">
+                <source>global.actions.create</source>
+                <target>Crear</target>
+            </trans-unit>
+            <trans-unit id="global.actions.cancel">
+                <source>global.actions.cancel</source>
+                <target>Cancelar</target>
+            </trans-unit>
+            <trans-unit id="task.new.title">
+                <source>task.new.title</source>
+                <target>Nueva tarea</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

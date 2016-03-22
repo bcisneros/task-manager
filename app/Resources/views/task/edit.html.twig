@@ -3,13 +3,13 @@
     Edit task - {{ task.name }}
 {% endblock %}
 {% block body %}
-    <h2>Edit task "{{ task.name }}"</h2>
+    <h2>{{'task.edit.title' | trans ({'%task%':task.name}) }}</h2>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
     <div class="navbar-form">
-        <input type="submit" value="Save" class="btn btn-primary"/>
-        <a href="{{ path('task_index') }}" class="btn btn-default">Cancel</a>
+        <input type="submit" value="{{ 'global.actions.save' | trans }}" class="btn btn-primary"/>
+        <a href="{{ path('task_index') }}" class="btn btn-default">{{ 'global.actions.cancel' | trans }}</a>
     </div>
     {{ form_end(edit_form) }}
 {% endblock %}
