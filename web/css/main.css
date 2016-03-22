@@ -92,3 +92,8 @@ div.content {
 .form-control {
     margin-bottom: 20px;
 }
+
+textarea.form-control {
+    height: 180px;
+    resize: none;
+}

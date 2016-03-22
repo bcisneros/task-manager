@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Add new comment to "{{ comment.task.name }}" task</h1>
+    <h1>{{ 'task.comments.new.title' | trans ({'%task%':comment.task.name}) }}</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
+    {{ form_widget(form) }}
     <div class="navbar-form">
-        <input type="submit" value="Add comment" class="btn btn-primary" />
-        <a href="{{ path('task_show', {'id':comment.task.id}) }}" class="btn btn-default">Cancel</a>
+        <input type="submit" value="{{ 'task.comments.actions.create' | trans }}" class="btn btn-primary"/>
+        <a href="{{ path('task_show', {'id':comment.task.id}) }}"
+           class="btn btn-default">{{ 'global.actions.cancel' | trans }}</a>
     </div>
 
     {{ form_end(form) }}

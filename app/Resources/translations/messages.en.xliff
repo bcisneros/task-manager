@@ -114,6 +114,14 @@
                 <source>task.details.comments.empty</source>
                 <target>No comments yet.</target>
             </trans-unit>
+            <trans-unit id="task.comments.new.title">
+                <source>task.comments.new.title</source>
+                <target>Add new comment to "%task%" task</target>
+            </trans-unit>
+            <trans-unit id="task.comments.actions.create">
+                <source>task.comments.actions.create</source>
+                <target>Add comment</target>
+            </trans-unit>
             <trans-unit id="task.edit.title">
                 <source>task.edit.title</source>
                 <target>Edit task "%task%"</target>
@@ -181,6 +189,10 @@
             <trans-unit id="task.form.label.priority.urgent">
                 <source>task.form.label.priority.urgent</source>
                 <target>Urgent</target>
+            </trans-unit>
+            <trans-unit id="comment.form.label.comment">
+                <source>comment.form.label.comment</source>
+                <target>Comment</target>
             </trans-unit>
             <trans-unit id="global.actions.save">
                 <source>global.actions.save</source>
