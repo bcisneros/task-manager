@@ -19,27 +19,38 @@ class TaskType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array('attr' => array('placeholder' => 'Introduce task name', 'class' => 'form-control'
-            )))
-            ->add('description', TextareaType::class, array('attr' => array(
-                'placeholder' => 'Introduce a more detailed description (optional)', 'class' => 'form-control'
-            ), 'required' => false))
-            ->add('dueDate', DateTimeType::class, array('widget' => 'single_text', 'format' => 'yyyy-MM-dd HH:mm', 'attr' => array('class' => 'form-control')))
-            ->add('category', ChoiceType::class, array('choices' => array(
-                'Family' => 'Family',
-                'Social' => 'Social',
-                'Work' => 'Work'),
+            ->add('name', TextType::class, array(
+                'attr' => array('placeholder' => 'task.form.placeholder.name', 'class' => 'form-control'),
+                'label' => 'task.form.label.name'
+            ))
+            ->add('description', TextareaType::class, array(
+                'attr' => array('placeholder' => 'task.form.placeholder.description', 'class' => 'form-control'),
+                'required' => false,
+                'label' => 'task.form.label.description'
+            ))
+            ->add('dueDate', DateTimeType::class,
+                array('widget' => 'single_text', 'format' => 'yyyy-MM-dd HH:mm',
+                    'label' => 'task.form.label.due_date',
+                    'attr' => array('class' => 'form-control', 'placeholder' => 'task.form.placeholder.due_date')))
+            ->add('category', ChoiceType::class, array(
+                'choices' => array(
+                    'task.form.label.category.family' => 'Family',
+                    'task.form.label.category.social' => 'Social',
+                    'task.form.label.category.work' => 'Work'),
                 'attr' => array('class' => 'form-control'),
                 'required' => false,
-                'placeholder' => '(Uncatalogued)',
-                'empty_data'  => null
+                'placeholder' => 'task.form.placeholder.category',
+                'empty_data' => null,
+                'label' => 'task.form.label.category'
             ))
-            ->add('priority', ChoiceType::class, array('choices' => array(
-                'Low' => 'Low',
-                'Normal' => 'Normal',
-                'High' => 'High',
-                'Urgent' => 'Urgent'),
-                'attr' => array('class' => 'form-control')
+            ->add('priority', ChoiceType::class, array(
+                'choices' => array(
+                    'task.form.label.priority.low' => 'Low',
+                    'task.form.label.priority.normal' => 'Normal',
+                    'task.form.label.priority.high' => 'High',
+                    'task.form.label.priority.urgent' => 'Urgent'),
+                'attr' => array('class' => 'form-control'),
+                'label' => 'task.form.label.priority'
             ));
     }
 

@@ -88,3 +88,7 @@ div.content {
     position: fixed;
     top: 100px;
 }
+
+.form-control {
+    margin-bottom: 20px;
+}

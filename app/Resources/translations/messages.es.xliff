@@ -118,6 +118,70 @@
                 <source>task.edit.title</source>
                 <target>Editar tarea "%task%"</target>
             </trans-unit>
+            <trans-unit id="task.form.label.name">
+                <source>task.form.label.name</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="task.form.placeholder.name">
+                <source>task.form.placeholder.name</source>
+                <target>Ingresa el nombre de la tarea</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.description">
+                <source>task.form.label.description</source>
+                <target>Descripción</target>
+            </trans-unit>
+            <trans-unit id="task.form.placeholder.description">
+                <source>task.form.placeholder.description</source>
+                <target>Ingresa una descripción de la tarea para mayor detalle (opcional)</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.due_date">
+                <source>task.form.label.due_date</source>
+                <target>Fecha de vencimiento</target>
+            </trans-unit>
+            <trans-unit id="task.form.placeholder.due_date">
+                <source>task.form.placeholder.due_date</source>
+                <target>Ingresa la fecha en la que la tarea debe ser finalizada</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.category">
+                <source>task.form.label.category</source>
+                <target>Categoría</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.category.family">
+                <source>task.form.label.category.family</source>
+                <target>Familia</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.category.social">
+                <source>task.form.label.category.social</source>
+                <target>Social</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.category.work">
+                <source>task.form.label.category.work</source>
+                <target>Trabajo</target>
+            </trans-unit>
+            <trans-unit id="task.form.placeholder.category">
+                <source>task.form.placeholder.category</source>
+                <target>(No catalogado)</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.priority">
+                <source>task.form.label.priority</source>
+                <target>Prioridad</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.priority.low">
+                <source>task.form.label.priority.low</source>
+                <target>Baja</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.priority.normal">
+                <source>task.form.label.priority.normal</source>
+                <target>Normal</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.priority.high">
+                <source>task.form.label.priority.high</source>
+                <target>Alta</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.priority.urgent">
+                <source>task.form.label.priority.urgent</source>
+                <target>Urgente</target>
+            </trans-unit>
             <trans-unit id="global.actions.save">
                 <source>global.actions.save</source>
                 <target>Guardar</target>
