@@ -9,6 +9,7 @@ task_manager:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
 homepage:
     path: /{_locale}
     requirements:

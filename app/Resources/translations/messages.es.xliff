@@ -34,6 +34,10 @@
                 <source>task.link.new</source>
                 <target>Nueva tarea</target>
             </trans-unit>
+            <trans-unit id="task.table.header.id">
+                <source>task.table.header.id</source>
+                <target>Número de tarea</target>
+            </trans-unit>
             <trans-unit id="task.table.header.name">
                 <source>task.table.header.name</source>
                 <target>Nombre de la tarea</target>
@@ -46,9 +50,69 @@
                 <source>task.table.header.due_date</source>
                 <target>Fecha de vencimiento</target>
             </trans-unit>
+            <trans-unit id="task.table.header.creation_date">
+                <source>task.table.header.creation_date</source>
+                <target>Fecha de creación</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.category">
+                <source>task.table.header.category</source>
+                <target>Categoría</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.priority">
+                <source>task.table.header.priority</source>
+                <target>Prioridad</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.status">
+                <source>task.table.header.status</source>
+                <target>Estado</target>
+            </trans-unit>
             <trans-unit id="task.table.header.actions">
                 <source>task.table.header.actions</source>
                 <target>Acciones</target>
+            </trans-unit>
+            <trans-unit id="task.actions.details">
+                <source>task.actions.details</source>
+                <target>Ver detalles</target>
+            </trans-unit>
+            <trans-unit id="task.actions.edit">
+                <source>task.actions.edit</source>
+                <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="task.actions.remove">
+                <source>task.actions.remove</source>
+                <target>Eliminar</target>
+            </trans-unit>
+            <trans-unit id="task.actions.remove.confirmation">
+                <source>task.actions.remove.confirmation</source>
+                <target>¿Realmente deseas eliminar la tarea?</target>
+            </trans-unit>
+            <trans-unit id="task.actions.start">
+                <source>task.actions.start</source>
+                <target>Iniciar tarea</target>
+            </trans-unit>
+            <trans-unit id="task.actions.close">
+                <source>task.actions.close</source>
+                <target>Cerrar tarea</target>
+            </trans-unit>
+            <trans-unit id="task.actions.back_to_list">
+                <source>task.actions.back_to_list</source>
+                <target>Regresar al listado</target>
+            </trans-unit>
+            <trans-unit id="task.details.title">
+                <source>task.details.title</source>
+                <target>Detalles de la tarea</target>
+            </trans-unit>
+            <trans-unit id="task.details.comments.title">
+                <source>task.details.comments.title</source>
+                <target>Comentarios</target>
+            </trans-unit>
+            <trans-unit id="task.details.comments.actions.add_comment">
+                <source>task.details.comments.actions.add_comment</source>
+                <target>Agregar comentario</target>
+            </trans-unit>
+            <trans-unit id="task.details.comments.empty">
+                <source>task.details.comments.empty</source>
+                <target>No hay comentarios aún.</target>
             </trans-unit>
         </body>
     </file>

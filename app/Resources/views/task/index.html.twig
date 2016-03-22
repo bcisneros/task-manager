@@ -25,13 +25,13 @@
                 <td>
                     <ul class="task-actions">
                         <li>
-                            <a href="{{ path('task_show', { 'id': task.id }) }}" class="btn btn-primary">Details</a>
+                            <a href="{{ path('task_show', { 'id': task.id }) }}" class="btn btn-primary">{{ 'task.actions.details' | trans }}</a>
                         </li>
                         <li>
-                            <a href="{{ path('task_edit', { 'id': task.id }) }}" class="btn btn-success">Edit</a>
+                            <a href="{{ path('task_edit', { 'id': task.id }) }}" class="btn btn-success">{{ 'task.actions.edit' | trans }}</a>
                         </li>
                         <li>
-                            <a href="{{ path('task_delete', { 'id': task.id }) }}" class="btn btn-danger" onclick="return confirm('Are you sure to delete this task?');">Remove</a>
+                            <a href="{{ path('task_delete', { 'id': task.id }) }}" class="btn btn-danger" onclick="return confirm('{{ 'task.actions.remove.confirmation' | trans }}');">{{ 'task.actions.remove' | trans }}</a>
                         </li>
                     </ul>
                 </td>

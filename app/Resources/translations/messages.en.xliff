@@ -34,6 +34,10 @@
                 <source>task.link.new</source>
                 <target>New task</target>
             </trans-unit>
+            <trans-unit id="task.table.header.id">
+                <source>task.table.header.id</source>
+                <target>Task ID</target>
+            </trans-unit>
             <trans-unit id="task.table.header.name">
                 <source>task.table.header.name</source>
                 <target>Task Name</target>
@@ -46,9 +50,69 @@
                 <source>task.table.header.due_date</source>
                 <target>Due date</target>
             </trans-unit>
+            <trans-unit id="task.table.header.creation_date">
+                <source>task.table.header.creation_date</source>
+                <target>Creation date</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.category">
+                <source>task.table.header.category</source>
+                <target>Category</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.priority">
+                <source>task.table.header.priority</source>
+                <target>Priority</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.status">
+                <source>task.table.header.status</source>
+                <target>Status</target>
+            </trans-unit>
             <trans-unit id="task.table.header.actions">
                 <source>task.table.header.actions</source>
                 <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="task.actions.details">
+                <source>task.actions.details</source>
+                <target>Details</target>
+            </trans-unit>
+            <trans-unit id="task.actions.edit">
+                <source>task.actions.edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="task.actions.remove">
+                <source>task.actions.remove</source>
+                <target>Remove</target>
+            </trans-unit>
+            <trans-unit id="task.actions.remove.confirmation">
+                <source>task.actions.remove.confirmation</source>
+                <target>Are you sure to delete this task?</target>
+            </trans-unit>
+            <trans-unit id="task.actions.start">
+                <source>task.actions.start</source>
+                <target>Start task</target>
+            </trans-unit>
+            <trans-unit id="task.actions.close">
+                <source>task.actions.close</source>
+                <target>Close task</target>
+            </trans-unit>
+            <trans-unit id="task.actions.back_to_list">
+                <source>task.actions.back_to_list</source>
+                <target>Back to the list</target>
+            </trans-unit>
+            <trans-unit id="task.details.title">
+                <source>task.details.title</source>
+                <target>Taks details</target>
+            </trans-unit>
+            <trans-unit id="task.details.comments.title">
+                <source>task.details.comments.title</source>
+                <target>Comments</target>
+            </trans-unit>
+            <trans-unit id="task.details.comments.actions.add_comment">
+                <source>task.details.comments.actions.add_comment</source>
+                <target>Add comment</target>
+            </trans-unit>
+            <trans-unit id="task.details.comments.empty">
+                <source>task.details.comments.empty</source>
+                <target>No comments yet.</target>
             </trans-unit>
         </body>
     </file>

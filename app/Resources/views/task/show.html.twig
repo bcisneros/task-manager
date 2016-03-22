@@ -1,42 +1,42 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-    Task details - {{ task.name }}
+    {{ 'task.details.title' | trans }} - {{ task.name }}
 {% endblock %}
 {% block body %}
-    <h2>Task details</h2>
+    <h2>{{ 'task.details.title' | trans }}</h2>
 
     <table class="table">
         <tbody>
         <tr>
-            <th>Task Id</th>
+            <th>{{ 'task.table.header.id' | trans }}</th>
             <td>{{ task.id }}</td>
         </tr>
         <tr>
-            <th>Name</th>
+            <th>{{ 'task.table.header.name' | trans }}</th>
             <td>{{ task.name }}</td>
         </tr>
         <tr>
-            <th>Description</th>
+            <th>{{ 'task.table.header.description' | trans }}</th>
             <td>{{ task.description }}</td>
         </tr>
         <tr>
-            <th>Due date</th>
+            <th>{{ 'task.table.header.due_date' | trans }}</th>
             <td>{{ task.dueDate | date('d-m-Y h:i A') }}</td>
         </tr>
         <tr>
-            <th>Creation date</th>
+            <th>{{ 'task.table.header.creation_date' | trans }}</th>
             <td>{{ task.creationDate | date('d-m-Y h:i A') }}</td>
         </tr>
         <tr>
-            <th>Category</th>
+            <th>{{ 'task.table.header.category' | trans }}</th>
             <td>{{ task.category }}</td>
         </tr>
         <tr>
-            <th>Priority</th>
+            <th>{{ 'task.table.header.priority' | trans }}</th>
             <td>{{ task.priority }}</td>
         </tr>
         <tr>
-            <th>Status</th>
+            <th>{{ 'task.table.header.status' | trans }}</th>
             <td>{{ task.status }}</td>
         </tr>
         </tbody>
@@ -47,27 +47,33 @@
         {% if task.status != 'Closed' %}
             <li>
                 <a href="{{ path('task_change_status', { 'id': task.id }) }}"
-                   class="btn btn-success">{% if task.status == 'New' %}Start{% else %}Close{% endif %} task</a>
+                   class="btn btn-success">
+                    {% if task.status == 'New' %}
+                        {{ 'task.actions.start' | trans }}
+                    {% else %}
+                        {{ 'task.actions.close' | trans }}
+                    {% endif %}
+                </a>
             </li>
         {% endif %}
         <li>
-            <a href="{{ path('task_edit', { 'id': task.id }) }}" class="btn btn-primary">Edit</a>
+            <a href="{{ path('task_edit', { 'id': task.id }) }}" class="btn btn-primary">{{ 'task.actions.edit' | trans }}</a>
         </li>
         <li>
             <a href="{{ path('task_delete', { 'id': task.id }) }}" class="btn btn-danger"
-               onclick="return confirm('Are you sure to delete this task?');">Remove</a>
+               onclick="return confirm('{{ 'task.actions.remove.confirmation' | trans }}');">{{ 'task.actions.remove' | trans }}</a>
         </li>
         <li>
-            <a href="{{ path('task_index') }}" class="btn btn-default">Back to the list</a>
+            <a href="{{ path('task_index') }}" class="btn btn-default">{{ 'task.actions.back_to_list' | trans }}</a>
         </li>
     </ul>
 
-    <h2>Comments</h2>
+    <h2>{{ 'task.details.comments.title' | trans }}</h2>
     <ul class="task-actions">
-        <li><a href="{{ path('comment_new', { 'task_id': task.id }) }}" class="btn btn-primary">Add comment</a></li>
+        <li><a href="{{ path('comment_new', { 'task_id': task.id }) }}" class="btn btn-primary">{{ 'task.details.comments.actions.add_comment' | trans }}</a></li>
     </ul>
     {% if  task.comments.empty %}
-        <p>No comments yet.</p>
+        <p>{{ 'task.details.comments.empty' | trans }}</p>
     {% else %}
         <ul class="comment-list">
             {% for comment in task.comments %}
