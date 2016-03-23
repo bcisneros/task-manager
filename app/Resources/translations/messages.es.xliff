@@ -6,6 +6,30 @@
                 <source>title.homepage</source>
                 <target><![CDATA[Bienvenido(a) a <strong>Task Manager</strong>]]></target>
             </trans-unit>
+            <trans-unit id="welcome.homepage">
+                <source>welcome.homepage</source>
+                <target><![CDATA[
+                <p>
+                    Este proyecto tiene la intención de conocer más sobre el Framework Symfony.
+                    Puedes crear una <a href="%register_route%">nueva cuenta</a> ó <a href="%login_route%">iniciar sesión</a>
+                    para acceder a una lista personalizada de tareas.
+                </p>
+                <p>
+                    Algunas de las funcionalidades son:
+                </p>
+                <ul>
+                    <li>Administrar tareas</li>
+                    <li>Agregar comentarios a las tareas</li>
+                    <li>Manejo de idiomas en Inglés o Español</li>
+                </ul>
+                <p>
+                    Si encuentras algún error o problema con la aplicación por favor escribeme a <strong>cisnerosbarraza@gmail.com</strong>.
+                    Si deseas obtener el código fuente visita el
+                    <a href="https://github.com/bcisneros/task-manager/" class="ui-icon-extlink">Repositorio de GitHub</a>.
+                </p>
+                ]]>
+                </target>
+            </trans-unit>
             <trans-unit id="link.login">
                 <source>link.login</source>
                 <target>Iniciar sesión</target>

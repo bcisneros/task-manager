@@ -8,20 +8,27 @@
             </trans-unit>
             <trans-unit id="welcome.homepage">
                 <source>welcome.homepage</source>
-                <target><![CDATA[<p>
-            This project is intended to learn about Symfony Framework. You can create a <a
-                    href="{{ path('fos_user_registration_register') }}">new account</a> or <a
-                    href="{{ path('fos_user_security_login') }}">log in</a> to access
-            to your tasks page.
-        </p>
-        <p>Some features are:</p>
-        <ul>
-            <li>Create new tasks</li>
-            <li>Add comments to your tasks</li>
-            <li>Internationalization</li>
-        </ul>
-        <p>If you found some issue or bug please send me an email to <strong>cisnerosbarraza@gmail.com</strong>. Also
-            you can get the source code at the <a href="https://github.com/bcisneros/task-manager/" class="ui-icon-extlink">GitHub repository</a>.</p>]]></target>
+                <target><![CDATA[
+                <p>
+                    This project is intended to learn about Symfony Framework.
+                    You can create a <a href="%register_route%">new account</a> or <a href="%login_route%">log in</a>
+                    to access to your tasks page.
+                </p>
+                <p>
+                    Some features are:
+                </p>
+                <ul>
+                    <li>Create new tasks</li>
+                    <li>Add comments to your tasks</li>
+                    <li>Internationalization</li>
+                </ul>
+                <p>
+                    If you found some issue or bug please send me an email to <strong>cisnerosbarraza@gmail.com</strong>.
+                    Also you can get the source code at the
+                    <a href="https://github.com/bcisneros/task-manager/" class="ui-icon-extlink">GitHub repository</a>.
+                </p>
+                ]]>
+                </target>
             </trans-unit>
             <trans-unit id="link.login">
                 <source>link.login</source>
