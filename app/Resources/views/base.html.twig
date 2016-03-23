@@ -21,13 +21,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ path("homepage") }}">Task Manager <span class="version">1.5.1</span></a>
+                <a class="navbar-brand" href="{{ path("homepage") }}">Task Manager <span
+                            class="version">1.5.1</span></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     {% if app.user %}
                         <li class="welcome">
-                            <a href="#">{{'user.welcome.msg' | trans ({'%user%':app.user}) }}</a>
+                            <a href="#">{{ 'user.welcome.msg' | trans ({'%user%':app.user}) }}</a>
                         </li>
                         <li>
                             <a href="{{ path('task_index') }}">{{ 'task.link.list' | trans }}</a>
@@ -58,7 +59,13 @@
 </div>
 
 <footer class="footer">
-    <address>{{ 'copyright' | trans }}</address>
+    <address>{{ 'copyright' | trans }}
+        <p>
+            <a href="{{ path(app.request.get('_route', 'homepage'), app.request.get('_route_params', [])|merge({ _locale: 'en' })) }}">English</a>
+            -
+            <a href="{{ path(app.request.get('_route', 'homepage'), app.request.get('_route_params', [])|merge({ _locale: 'es' })) }}">Español</a>
+        </p>
+    </address>
 </footer>
 {% block javascripts %}{% endblock %}
 </body>
