@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="title.homepage">
+                <source>title.homepage</source>
+                <target><![CDATA[Bienvenido(a) a <strong>Task Manager</strong>]]></target>
+            </trans-unit>
+            <trans-unit id="welcome.homepage">
+                <source>welcome.homepage</source>
+                <target><![CDATA[
+                <p>
+                    Este proyecto tiene la intención de conocer más sobre el Framework Symfony.
+                    Puedes crear una <a href="%register_route%">nueva cuenta</a> ó <a href="%login_route%">iniciar sesión</a>
+                    para acceder a una lista personalizada de tareas.
+                </p>
+                <p>
+                    Algunas de las funcionalidades son:
+                </p>
+                <ul>
+                    <li>Administrar tareas</li>
+                    <li>Agregar comentarios a las tareas</li>
+                    <li>Manejo de idiomas en Inglés o Español</li>
+                </ul>
+                <p>
+                    Si encuentras algún error o problema con la aplicación por favor escribeme a <strong>cisnerosbarraza@gmail.com</strong>.
+                    Si deseas obtener el código fuente visita el
+                    <a href="https://github.com/bcisneros/task-manager/" class="ui-icon-extlink">Repositorio de GitHub</a>.
+                </p>
+                ]]>
+                </target>
+            </trans-unit>
+            <trans-unit id="link.login">
+                <source>link.login</source>
+                <target>Iniciar sesión</target>
+            </trans-unit>
+            <trans-unit id="link.new_user">
+                <source>link.new_user</source>
+                <target>Crear una cuenta</target>
+            </trans-unit>
+            <trans-unit id="link.logout">
+                <source>link.logout</source>
+                <target>Cerrar sesión</target>
+            </trans-unit>
+            <trans-unit id="copyright">
+                <source>copyright</source>
+                <target>Developers Delicias 2016. Todos los derechos reservados.</target>
+            </trans-unit>
+            <trans-unit id="user.welcome.msg">
+                <source>user.welcome.msg</source>
+                <target>Bienvenido %user%</target>
+            </trans-unit>
+            <trans-unit id="task.list.title">
+                <source>task.list.title</source>
+                <target>Tareas pendientes</target>
+            </trans-unit>
+            <trans-unit id="task.link.new">
+                <source>task.link.new</source>
+                <target>Nueva tarea</target>
+            </trans-unit>
+            <trans-unit id="task.link.list">
+                <source>task.link.list</source>
+                <target>Mis tareas pendientes</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.id">
+                <source>task.table.header.id</source>
+                <target>Número de tarea</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.name">
+                <source>task.table.header.name</source>
+                <target>Nombre de la tarea</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.description">
+                <source>task.table.header.description</source>
+                <target>Descripción</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.due_date">
+                <source>task.table.header.due_date</source>
+                <target>Fecha de vencimiento</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.creation_date">
+                <source>task.table.header.creation_date</source>
+                <target>Fecha de creación</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.category">
+                <source>task.table.header.category</source>
+                <target>Categoría</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.priority">
+                <source>task.table.header.priority</source>
+                <target>Prioridad</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.status">
+                <source>task.table.header.status</source>
+                <target>Estado</target>
+            </trans-unit>
+            <trans-unit id="task.table.header.actions">
+                <source>task.table.header.actions</source>
+                <target>Acciones</target>
+            </trans-unit>
+            <trans-unit id="task.actions.details">
+                <source>task.actions.details</source>
+                <target>Ver detalles</target>
+            </trans-unit>
+            <trans-unit id="task.actions.edit">
+                <source>task.actions.edit</source>
+                <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="task.actions.remove">
+                <source>task.actions.remove</source>
+                <target>Eliminar</target>
+            </trans-unit>
+            <trans-unit id="task.actions.remove.confirmation">
+                <source>task.actions.remove.confirmation</source>
+                <target>¿Realmente deseas eliminar la tarea?</target>
+            </trans-unit>
+            <trans-unit id="task.actions.start">
+                <source>task.actions.start</source>
+                <target>Iniciar tarea</target>
+            </trans-unit>
+            <trans-unit id="task.actions.close">
+                <source>task.actions.close</source>
+                <target>Cerrar tarea</target>
+            </trans-unit>
+            <trans-unit id="task.actions.back_to_list">
+                <source>task.actions.back_to_list</source>
+                <target>Regresar al listado</target>
+            </trans-unit>
+            <trans-unit id="task.details.title">
+                <source>task.details.title</source>
+                <target>Detalles de la tarea</target>
+            </trans-unit>
+            <trans-unit id="task.details.comments.title">
+                <source>task.details.comments.title</source>
+                <target>Comentarios</target>
+            </trans-unit>
+            <trans-unit id="task.details.comments.actions.add_comment">
+                <source>task.details.comments.actions.add_comment</source>
+                <target>Agregar comentario</target>
+            </trans-unit>
+            <trans-unit id="task.details.comments.empty">
+                <source>task.details.comments.empty</source>
+                <target>No hay comentarios aún.</target>
+            </trans-unit>
+            <trans-unit id="task.comments.new.title">
+                <source>task.comments.new.title</source>
+                <target>Agregar nuevo comentario a la tarea "%task%"</target>
+            </trans-unit>
+            <trans-unit id="task.comments.actions.create">
+                <source>task.comments.actions.create</source>
+                <target>Agregar comentario</target>
+            </trans-unit>
+            <trans-unit id="task.edit.title">
+                <source>task.edit.title</source>
+                <target>Editar tarea "%task%"</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.name">
+                <source>task.form.label.name</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="task.form.placeholder.name">
+                <source>task.form.placeholder.name</source>
+                <target>Ingresa el nombre de la tarea</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.description">
+                <source>task.form.label.description</source>
+                <target>Descripción</target>
+            </trans-unit>
+            <trans-unit id="task.form.placeholder.description">
+                <source>task.form.placeholder.description</source>
+                <target>Ingresa una descripción de la tarea para mayor detalle (opcional)</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.due_date">
+                <source>task.form.label.due_date</source>
+                <target>Fecha de vencimiento</target>
+            </trans-unit>
+            <trans-unit id="task.form.placeholder.due_date">
+                <source>task.form.placeholder.due_date</source>
+                <target>Ingresa la fecha en la que la tarea debe ser finalizada</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.category">
+                <source>task.form.label.category</source>
+                <target>Categoría</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.category.family">
+                <source>task.form.label.category.family</source>
+                <target>Familia</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.category.social">
+                <source>task.form.label.category.social</source>
+                <target>Social</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.category.work">
+                <source>task.form.label.category.work</source>
+                <target>Trabajo</target>
+            </trans-unit>
+            <trans-unit id="task.form.placeholder.category">
+                <source>task.form.placeholder.category</source>
+                <target>(No catalogado)</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.priority">
+                <source>task.form.label.priority</source>
+                <target>Prioridad</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.priority.low">
+                <source>task.form.label.priority.low</source>
+                <target>Baja</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.priority.normal">
+                <source>task.form.label.priority.normal</source>
+                <target>Normal</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.priority.high">
+                <source>task.form.label.priority.high</source>
+                <target>Alta</target>
+            </trans-unit>
+            <trans-unit id="task.form.label.priority.urgent">
+                <source>task.form.label.priority.urgent</source>
+                <target>Urgente</target>
+            </trans-unit>
+            <trans-unit id="comment.form.label.comment">
+                <source>comment.form.label.comment</source>
+                <target>Comentario</target>
+            </trans-unit>
+            <trans-unit id="global.actions.save">
+                <source>global.actions.save</source>
+                <target>Guardar</target>
+            </trans-unit>
+            <trans-unit id="global.actions.create">
+                <source>global.actions.create</source>
+                <target>Crear</target>
+            </trans-unit>
+            <trans-unit id="global.actions.cancel">
+                <source>global.actions.cancel</source>
+                <target>Cancelar</target>
+            </trans-unit>
+            <trans-unit id="task.new.title">
+                <source>task.new.title</source>
+                <target>Nueva tarea</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

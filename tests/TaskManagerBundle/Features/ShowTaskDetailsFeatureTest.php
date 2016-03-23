@@ -12,6 +12,8 @@ class ShowTaskDetailsFeatureTest extends WebTestCase
 {
     protected $client;
 
+    const TASK_LIST_ROUTE = 'en/tasks/';
+
     protected function setUp()
     {
         $fixtures = $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData',
@@ -88,7 +90,7 @@ class ShowTaskDetailsFeatureTest extends WebTestCase
 
     private function clickOnTaskDetailsLink()
     {
-        $taskDetailsLink = $this->client->request('GET', '/tasks/')->selectLink('Details')->first()->link();
+        $taskDetailsLink = $this->client->request('GET', self::TASK_LIST_ROUTE)->selectLink('Details')->first()->link();
         $this->client->click($taskDetailsLink);
     }
 

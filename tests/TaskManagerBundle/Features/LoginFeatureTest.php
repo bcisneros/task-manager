@@ -23,7 +23,7 @@ class LoginFeatureTest extends WebTestCase
     public function should_log_in_when_credentials_are_ok()
     {
         $this->performLogin();
-        $this->assertEquals('TaskManagerBundle\Controller\TaskController::indexAction', $this->client->getRequest()->attributes->get('_controller'));
+        $this->assertEquals('Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction', $this->client->getRequest()->attributes->get('_controller'));
     }
 
     /**
@@ -59,9 +59,10 @@ class LoginFeatureTest extends WebTestCase
     private function redirectToLoginPage()
     {
         $this->client = static::makeClient(true);
-        $this->client->request('GET', '/');
-        $this->client->followRedirect();
-        $this->client->followRedirect();
+        $loginLink = $this->client->request('GET', '/')->selectLink('Login')->link();
+        $this->client->click($loginLink);
+        //$this->client->followRedirect();
+        //$this->client->followRedirect();
     }
 
     private function assertElementIsPresentInPage($elementToFind, $times)

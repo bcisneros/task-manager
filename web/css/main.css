@@ -42,6 +42,7 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+
 }
 
 .footer {
@@ -87,4 +88,17 @@ form.login input[type=submit] {
 div.content {
     position: fixed;
     top: 100px;
+}
+
+.form-control {
+    margin-bottom: 20px;
+}
+
+textarea.form-control {
+    height: 180px;
+    resize: none;
+}
+
+div.jumbotron ul {
+    font-size: 21px;
 }

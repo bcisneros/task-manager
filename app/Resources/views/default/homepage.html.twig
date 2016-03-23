@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'homepage' %}
+{% block body %}
+    <div class="page-header">
+        <h1>{{ 'title.homepage'|trans|raw }}</h1>
+    </div>
+
+    <div class="jumbotron">
+        {{ 'welcome.homepage' | trans({'%register_route%': path('fos_user_registration_register'), '%login_route%': path('fos_user_security_login')}) | raw }}
+    </div>
+
+{% endblock %}
