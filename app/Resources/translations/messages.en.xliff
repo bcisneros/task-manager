@@ -51,6 +51,10 @@
                 <source>task.link.new</source>
                 <target>New task</target>
             </trans-unit>
+            <trans-unit id="task.link.list">
+                <source>task.link.list</source>
+                <target>My Pending Tasks</target>
+            </trans-unit>
             <trans-unit id="task.table.header.id">
                 <source>task.table.header.id</source>
                 <target>Task ID</target>

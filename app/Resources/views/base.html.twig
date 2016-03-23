@@ -26,7 +26,12 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     {% if app.user %}
-                        <li class="welcome"><a href="#">{{'user.welcome.msg' | trans ({'%user%':app.user}) }}</a></li>
+                        <li class="welcome">
+                            <a href="#">{{'user.welcome.msg' | trans ({'%user%':app.user}) }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('task_index') }}">{{ 'task.link.list' | trans }}</a>
+                        </li>
                         <li>
                             <a href="{{ path('fos_user_security_logout') }}">{{ 'link.logout'|trans }}</a>
                         </li>
