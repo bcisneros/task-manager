@@ -3,6 +3,7 @@
 namespace TaskManagerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Comment
@@ -26,6 +27,9 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="comment", type="string", length=2000)
+     * @Assert\Length(
+     *      max = 2000,
+     *      maxMessage = "Comment cannot be longer than {{ limit }} characters")
      */
     private $comment;
 
