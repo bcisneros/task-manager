@@ -20,7 +20,7 @@ class RegisterNewUserFeatureTest extends WebTestCase
      */
     public function should_show_a_registration_link_when_user_is_not_logged_in()
     {
-        $this->assertElementIsPresentInPage('a[href="/register/"]', 1);
+        $this->assertElementIsPresentInPage('ul > li > a[href="/register/"]', 1);
     }
 
     /**
@@ -32,7 +32,7 @@ class RegisterNewUserFeatureTest extends WebTestCase
         $this->loginAs($fixtures->getReference('admin'), 'main');
         $this->client = static::makeClient(true);
         $this->goHomePageAndRedirect();
-        $this->assertElementIsPresentInPage('a[href="/register/"]', 0);
+        $this->assertElementIsPresentInPage('ul > li > a[href="/register/"]', 0);
     }
 
     /**

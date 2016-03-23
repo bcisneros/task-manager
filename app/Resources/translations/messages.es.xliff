@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
-                <target><![CDATA[Bienvenido/a a <strong>Task Manager</strong>]]></target>
+                <target><![CDATA[Bienvenido(a) a <strong>Task Manager</strong>]]></target>
             </trans-unit>
             <trans-unit id="link.login">
                 <source>link.login</source>
