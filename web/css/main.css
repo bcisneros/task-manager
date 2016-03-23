@@ -97,3 +97,7 @@ textarea.form-control {
     height: 180px;
     resize: none;
 }
+
+ul {
+    font-size: 21px;
+}
