@@ -318,7 +318,7 @@ class Task
      *
      * @return Task
      */
-    public function addComment(\TaskManagerBundle\Entity\Comment $comment)
+    public function addComment(Comment $comment)
     {
         $this->comments[] = $comment;
 
@@ -330,7 +330,7 @@ class Task
      *
      * @param \TaskManagerBundle\Entity\Comment $comment
      */
-    public function removeComment(\TaskManagerBundle\Entity\Comment $comment)
+    public function removeComment(Comment $comment)
     {
         $this->comments->removeElement($comment);
     }
@@ -376,7 +376,7 @@ class Task
      *
      * @return Task
      */
-    public function setUser(\TaskManagerBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 

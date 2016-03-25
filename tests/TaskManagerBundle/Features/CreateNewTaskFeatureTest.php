@@ -3,10 +3,14 @@
 namespace TaskManagerBundle\Features;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
+use Symfony\Component\BrowserKit\Client;
 use TaskManagerBundle\Entity\Task;
 
 class CreateNewTaskFeatureTest extends WebTestCase
 {
+    /**
+     * @var Client
+     */
     protected $client;
 
     const TASK_TABLE_ROW = 'table > tbody > tr';

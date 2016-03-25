@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cisneben
- * Date: 17/03/2016
- * Time: 12:35 PM
- */
 
 namespace TaskManagerBundle\Features;
 use Liip\FunctionalTestBundle\Test\WebTestCase;

@@ -39,6 +39,8 @@ class TaskController extends Controller
      *
      * @Route("/new", name="task_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -66,6 +68,8 @@ class TaskController extends Controller
      *
      * @Route("/{id}", name="task_show")
      * @Method("GET")
+     * @param Task $task
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Task $task)
     {
@@ -82,6 +86,9 @@ class TaskController extends Controller
      *
      * @Route("/{id}/edit", name="task_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Task $task
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Task $task)
     {
@@ -107,6 +114,8 @@ class TaskController extends Controller
     /**
      * @Route("/{id}/delete", name="task_delete")
      * @Method("GET")
+     * @param Task $task
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteTaskAction(Task $task)
     {
@@ -117,6 +126,8 @@ class TaskController extends Controller
     /**
      * @Route("/{id}/change-status", name="task_change_status")
      * @Method("GET")
+     * @param Task $task
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function changeStatusAction(Task $task)
     {

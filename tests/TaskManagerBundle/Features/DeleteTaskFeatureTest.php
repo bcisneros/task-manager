@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cisneben
- * Date: 15/03/2016
- * Time: 11:04 AM
- */
 
 namespace TaskManagerBundle\Features;
 

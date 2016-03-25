@@ -153,7 +153,7 @@ class Comment
      *
      * @return Comment
      */
-    public function setTask(\TaskManagerBundle\Entity\Task $task = null)
+    public function setTask(Task $task = null)
     {
         $this->task = $task;
 
