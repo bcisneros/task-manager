@@ -1,6 +1,7 @@
 <?php
 
 namespace TaskManagerBundle\Repository;
+
 use Doctrine\ORM\EntityRepository;
 
 /**

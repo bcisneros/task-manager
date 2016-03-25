@@ -15,8 +15,7 @@ class RegistrationType extends AbstractType
     {
         $builder->add('email', TextType::class, array('attr' => array('class' => 'form-control')))
             ->add('username', TextType::class, array('attr' => array('class' => 'form-control')))
-            ->add('plainPassword', PasswordType::class, array('attr' => array('class' => 'form-control'), 'label' => 'Password'))
-        ;
+            ->add('plainPassword', PasswordType::class, array('attr' => array('class' => 'form-control'), 'label' => 'Password'));
     }
 
     public function getParent()
