@@ -45,7 +45,7 @@ class LoadInitialTaskData extends AbstractFixture implements FixtureInterface
         $pickMySonTask = new Task();
         $pickMySonTask->setName("Pick my son");
         $pickMySonTask->setDescription("Go to school and pick my son");
-        $pickMySonTask->setDueDate(new \DateTime('25-01-2016 14:30'));
+        $pickMySonTask->setDueDate(new \DateTime('+1week'));
         $pickMySonTask->setCreationDate(new \DateTime('25-01-2016 02:16'));
         $pickMySonTask->setCategory("Personal");
         $pickMySonTask->setPriority("Urgent");

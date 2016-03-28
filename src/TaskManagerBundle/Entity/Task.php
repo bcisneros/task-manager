@@ -393,4 +393,14 @@ class Task
     {
         return $this->user;
     }
+
+    /**
+     * Determines if a task is overdue or not
+     *
+     * @return bool True if the task is overdue, False if not
+     */
+    public function overdue()
+    {
+        return time() > $this->dueDate->getTimestamp();
+    }
 }

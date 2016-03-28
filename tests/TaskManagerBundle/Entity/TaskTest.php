@@ -30,4 +30,24 @@ class TaskTest extends WebTestCase
         $task->changeStatus();
         $this->assertEquals("Closed", $task->getStatus());
     }
+
+    /**
+     * @test
+     */
+    public function should_return_true_when_a_task_is_overdue()
+    {
+        $task = new Task();
+        $task->setDueDate(new \DateTime('-3weeks'));
+        $this->assertTrue($task->overdue());
+    }
+
+    /**
+     * @test
+     */
+    public function should_return_false_when_a_task_is_not_overdue()
+    {
+        $task = new Task();
+        $task->setDueDate(new \DateTime('+3weeks'));
+        $this->assertFalse($task->overdue());
+    }
 }

@@ -102,3 +102,11 @@ textarea.form-control {
 div.jumbotron ul {
     font-size: 21px;
 }
+
+tr.overdue {
+    background-color: #ebccd1;
+}
+
+.table-striped > tbody > tr.overdue:nth-of-type(2n+1) {
+    background-color: #dca7a7;
+}
