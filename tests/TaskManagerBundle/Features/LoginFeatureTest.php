@@ -61,8 +61,6 @@ class LoginFeatureTest extends WebTestCase
         $this->client = static::makeClient(true);
         $loginLink = $this->client->request('GET', '/')->selectLink('Login')->link();
         $this->client->click($loginLink);
-        //$this->client->followRedirect();
-        //$this->client->followRedirect();
     }
 
     private function assertElementIsPresentInPage($elementToFind, $times)
