@@ -50,6 +50,18 @@
                 <source>user.welcome.msg</source>
                 <target>Bienvenido %user%</target>
             </trans-unit>
+            <trans-unit id="user.change.password">
+                <source>user.change.password</source>
+                <target>Cambiar contraseña</target>
+            </trans-unit>
+            <trans-unit id="user.password.change.confirmation.title">
+                <source>user.password.change.confirmation.title</source>
+                <target>¡La contraseña ha sido modificada correctamente!</target>
+            </trans-unit>
+            <trans-unit id="user.password.change.confirmation.message">
+                <source>user.password.change.confirmation.message</source>
+                <target>Se ha modificado tu contraseña.</target>
+            </trans-unit>
             <trans-unit id="task.list.title">
                 <source>task.list.title</source>
                 <target>Tareas pendientes</target>
