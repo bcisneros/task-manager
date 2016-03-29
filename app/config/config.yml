@@ -76,3 +76,4 @@ fos_user:
     registration:
         form:
             type: TaskManagerBundle\Form\RegistrationType
+    change_password:

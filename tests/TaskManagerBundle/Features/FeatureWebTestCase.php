@@ -9,6 +9,7 @@ abstract class FeatureWebTestCase extends WebTestCase
 {
     const TASK_LIST_ROUTE = 'en/tasks/';
     protected $client;
+    protected $user;
 
     /**
      * Use this function when you want to debug and see on the html in the browser
@@ -35,7 +36,22 @@ abstract class FeatureWebTestCase extends WebTestCase
         'TaskManagerBundle\DataFixtures\ORM\LoadInitialTaskData'), $user = 'admin', $firewallName = 'main')
     {
         $fixtures = $this->loadFixtures($fixturesArray)->getReferenceRepository();
-        $this->loginAs($fixtures->getReference($user), $firewallName);
+        $this->user = $fixtures->getReference($user);
+        $this->loginAs($this->user, $firewallName);
         $this->client = static::makeClient(true);
+    }
+
+    /**
+     * @param $element
+     * @return mixed
+     */
+    protected function filter($element)
+    {
+        return $this->client->getCrawler()->filter($element);
+    }
+
+    protected function assertValidationErrorsExists($expected)
+    {
+        $this->assertValidationErrors($expected, $this->client->getContainer());
     }
 }

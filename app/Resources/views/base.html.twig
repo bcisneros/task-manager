@@ -29,6 +29,9 @@
                     {% if app.user %}
                         <li class="welcome">
                             <a href="#">{{ 'user.welcome.msg' | trans ({'%user%':app.user}) }}</a>
+                            <ul>
+                                <li><a href="{{ path('fos_user_change_password') }}">{{ 'user.change.password' | trans }}</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="{{ path('task_index') }}">{{ 'task.link.list' | trans }}</a>

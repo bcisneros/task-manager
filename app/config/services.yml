@@ -8,6 +8,11 @@ services:
         class: TaskManagerBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: app_user_registration }
+    app.user.change_password:
+        class: TaskManagerBundle\EventListener\PasswordChangeListener
+        arguments: ['@router']
+        tags:
+            - { name: kernel.event_subscriber }
 
 #    service_name:
 #        class: AppBundle\Directory\ClassName
