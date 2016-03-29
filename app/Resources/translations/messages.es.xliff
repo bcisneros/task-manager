@@ -250,6 +250,10 @@
                 <source>task.new.title</source>
                 <target>Nueva tarea</target>
             </trans-unit>
+            <trans-unit id="task.new.flash.notice">
+                <source>task.new.flash.notice</source>
+                <target>¡Se creó la tarea "%task%"!</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -2,16 +2,13 @@
 
 namespace TaskManagerBundle\Features;
 
-use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Client;
 use TaskManagerBundle\Entity\Task;
 
-class CreateNewTaskFeatureTest extends WebTestCase
+include_once 'FeatureWebTestCase.php';
+
+class CreateNewTaskFeatureTest extends FeatureWebTestCase
 {
-    /**
-     * @var Client
-     */
-    protected $client;
 
     const TASK_TABLE_ROW = 'table > tbody > tr';
 
@@ -152,6 +149,17 @@ class CreateNewTaskFeatureTest extends WebTestCase
     {
         $task = $this->createTask(null);
         $this->validateTaskIsCreated($task);
+    }
+
+    /**
+     * @test
+     */
+
+    public function should_show_a_flash_message_when_a_task_is_created()
+    {
+        $this->createTask('Task with flash message');
+        $this->client->followRedirect();
+        $this->assertEquals("Task \"New Task\" was created!", $this->filter('div.flash-notice')->first()->text());
     }
 
 

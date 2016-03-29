@@ -53,6 +53,8 @@ class TaskController extends Controller
             $task->setUser($this->get('security.token_storage')->getToken()->getUser());
             $em->persist($task);
             $em->flush();
+            $translated = $this->get('translator')->trans('task.new.flash.notice', array('%task%' => $task->getName()));
+            $this->addFlash('notice', $translated);
 
             return $this->redirectToRoute('task_index');
         }

@@ -62,6 +62,9 @@
     </nav>
     <div class="container content">
         <div>
+            {% for flash_message in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">{{ flash_message }}</div>
+            {% endfor %}
             {% block body %}{% endblock %}
         </div>
     </div>

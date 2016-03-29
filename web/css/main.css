@@ -111,3 +111,10 @@ tr.overdue {
 .table-striped > tbody > tr.overdue:nth-of-type(2n+1) {
     background-color: #dca7a7;
 }
+
+div.flash-notice {
+    border-radius: 5px;
+    border: 1px solid #2ca02c;
+    padding: 10px;
+    background-color: #b2dba1;
+}
