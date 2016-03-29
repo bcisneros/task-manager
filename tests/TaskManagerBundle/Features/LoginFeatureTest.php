@@ -32,7 +32,7 @@ class LoginFeatureTest extends WebTestCase
     public function should_show_a_welcome_message_when_user_is_logged_in()
     {
         $this->performLogin();
-        $this->assertElementIsPresentInPage('li.welcome:contains("Welcome admin")', 1);
+        $this->assertElementIsPresentInPage('li:contains("Welcome admin")', 1);
     }
 
     /**
