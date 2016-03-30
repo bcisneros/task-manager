@@ -25,11 +25,12 @@ abstract class FeatureWebTestCase extends WebTestCase
     }
 
     /**
+     * @param int $page
      * @return \Symfony\Component\DomCrawler\Crawler
      */
-    protected function requestTaskIndexPage()
+    protected function requestTaskIndexPage($page = 1)
     {
-        return static::makeClient(true)->request('GET', FeatureWebTestCase::TASK_LIST_ROUTE);
+        return $this->client->request('GET', FeatureWebTestCase::TASK_LIST_ROUTE, array('page' => $page));
     }
 
     protected function loadFixturesAndLogin($fixturesArray = array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData',

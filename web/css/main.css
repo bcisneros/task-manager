@@ -118,3 +118,8 @@ div.flash-notice {
     padding: 10px;
     background-color: #b2dba1;
 }
+.navigation, .pagination-info {
+    text-align: center;
+}
+
+

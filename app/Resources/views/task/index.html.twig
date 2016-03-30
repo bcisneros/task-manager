@@ -9,15 +9,15 @@
     </ul>
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th>{{ 'task.table.header.name' | trans }}</th>
-                <th>{{ 'task.table.header.description' | trans }}</th>
-                <th>{{ 'task.table.header.due_date' | trans }}</th>
-                <th>{{ 'task.table.header.actions' | trans }}</th>
-            </tr>
+        <tr>
+            <th>{{ 'task.table.header.name' | trans }}</th>
+            <th>{{ 'task.table.header.description' | trans }}</th>
+            <th>{{ 'task.table.header.due_date' | trans }}</th>
+            <th>{{ 'task.table.header.actions' | trans }}</th>
+        </tr>
         </thead>
         <tbody>
-        {% for task in tasks %}
+        {% for task in pagination %}
             <tr {% if task.overdue %} class="overdue" {% endif %} >
                 <td>{{ task.name }}</td>
                 <td>{{ task.description }}</td>
@@ -25,13 +25,16 @@
                 <td>
                     <ul class="task-actions">
                         <li>
-                            <a href="{{ path('task_show', { 'id': task.id }) }}" class="btn btn-primary">{{ 'task.actions.details' | trans }}</a>
+                            <a href="{{ path('task_show', { 'id': task.id }) }}"
+                               class="btn btn-primary">{{ 'task.actions.details' | trans }}</a>
                         </li>
                         <li>
-                            <a href="{{ path('task_edit', { 'id': task.id }) }}" class="btn btn-success">{{ 'task.actions.edit' | trans }}</a>
+                            <a href="{{ path('task_edit', { 'id': task.id }) }}"
+                               class="btn btn-success">{{ 'task.actions.edit' | trans }}</a>
                         </li>
                         <li>
-                            <a href="{{ path('task_delete', { 'id': task.id }) }}" class="btn btn-danger" onclick="return confirm('{{ 'task.actions.remove.confirmation' | trans }}');">{{ 'task.actions.remove' | trans }}</a>
+                            <a href="{{ path('task_delete', { 'id': task.id }) }}" class="btn btn-danger"
+                               onclick="return confirm('{{ 'task.actions.remove.confirmation' | trans }}');">{{ 'task.actions.remove' | trans }}</a>
                         </li>
                     </ul>
                 </td>
@@ -39,11 +42,14 @@
         {% endfor %}
         </tbody>
         <tfoot>
-            <tr>
-                <td colspan="4">Total: {{ tasks | length }}</td>
-            </tr>
+        <tr>
+            <td colspan="4">
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+                <div class="pagination-info">{{ 'tasks.pagination.info' | trans({'%current%':pagination.currentPageNumber, '%totalPages%':pagination.pageCount, '%firstItemNumber%': pagination.paginationData.firstItemNumber, '%lastItemNumber%': pagination.paginationData.lastItemNumber, '%totalTasks%': pagination.totalItemCount}) }}</div>
+            </td>
+        </tr>
         </tfoot>
     </table>
-
-
 {% endblock %}

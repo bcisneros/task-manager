@@ -23,14 +23,21 @@ class TaskController extends Controller
      * @Route("/", name="task_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $tasks = $em->getRepository('TaskManagerBundle:Task')->getAllNotClosedTasks($user);
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $tasks, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
         return $this->render('task/index.html.twig', array(
-            'tasks' => $tasks,
+            'pagination' => $pagination,
         ));
     }
 
