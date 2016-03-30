@@ -254,6 +254,10 @@
                 <source>task.new.flash.notice</source>
                 <target>Task "%task%" was created!</target>
             </trans-unit>
+            <trans-unit id="tasks.pagination.info">
+                <source>tasks.pagination.info</source>
+                <target>Page %current% of %totalPages%, Tasks %firstItemNumber% - %lastItemNumber% of %totalTasks%</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

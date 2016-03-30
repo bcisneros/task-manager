@@ -56,15 +56,6 @@ class TaskListFeatureTest extends FeatureWebTestCase
     /**
      * @test
      */
-    public function should_show_total_number_of_tasks()
-    {
-        $totalString = $this->requestTaskIndexPage()->filter('table > tfoot > tr')->first()->filter('td')->first()->text();
-        $this->assertEquals('Total: 4', $totalString);
-    }
-
-    /**
-     * @test
-     */
     public function should_show_due_date_in_Y_m_d_h_i_A_format()
     {
         $formattedDueDate = $this->requestTaskIndexPage()->filter('table > tbody > tr')->first()->filter('td')->eq(2)->text();
@@ -87,6 +78,14 @@ class TaskListFeatureTest extends FeatureWebTestCase
     {
         $style = $this->requestTaskIndexPage()->filter('table > tbody > tr')->eq(3)->attr('class');
         $this->assertNull($style);
+    }
+
+    /**
+     * @test
+     */
+    public function should_not_show_a_pagination_when_tasks_count_is_less_10_elements()
+    {
+        $this->assertCount(0, $this->requestTaskIndexPage()->filter('div.pagination'));
     }
 
 }
