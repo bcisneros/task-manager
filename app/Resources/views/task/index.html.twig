@@ -20,7 +20,7 @@
         {% for task in pagination %}
             <tr {% if task.overdue %} class="overdue" {% endif %} >
                 <td>{{ task.name }}</td>
-                <td>{{ task.description }}</td>
+                <td>{{ task.description | nl2br }}</td>
                 <td>{{ task.dueDate | date('Y-m-d h:i A') }}</td>
                 <td>
                     <ul class="task-actions">

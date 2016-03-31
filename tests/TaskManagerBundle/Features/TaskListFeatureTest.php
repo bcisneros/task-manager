@@ -88,4 +88,12 @@ class TaskListFeatureTest extends FeatureWebTestCase
         $this->assertCount(0, $this->requestTaskIndexPage()->filter('div.pagination'));
     }
 
+    /**
+     * @test
+     */
+    public function should_show_description_with_line_breaks_correctly()
+    {
+        $this->assertCount(1, $this->requestTaskIndexPage()->filter('table > tbody > tr')->eq(1)->filter('td')->eq(1)->filter('br'));
+    }
+
 }
