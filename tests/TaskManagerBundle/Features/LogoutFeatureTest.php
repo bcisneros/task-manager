@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: cisneben
- * Date: 17/03/2016
- * Time: 12:35 PM
- */
 
 namespace TaskManagerBundle\Features;
+
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
@@ -73,7 +68,7 @@ class LogoutFeatureTest extends WebTestCase
             $debugFile = fopen("../../../web/$name", "w") or die("Unable to open file!");
             fwrite($debugFile, $this->client->getResponse()->getContent());
             fclose($debugFile);
-        } catch(Exception $exception) {
+        } catch (Exception $exception) {
             echo "Could not create $name file";
         }
 

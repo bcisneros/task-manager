@@ -23,6 +23,9 @@ class CommentController extends Controller
      *
      * @Route("/new", name="comment_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Task $task
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request, Task $task)
     {

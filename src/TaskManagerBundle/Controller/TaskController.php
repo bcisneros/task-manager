@@ -23,14 +23,21 @@ class TaskController extends Controller
      * @Route("/", name="task_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $tasks = $em->getRepository('TaskManagerBundle:Task')->getAllNotClosedTasks($user);
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $tasks, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
         return $this->render('task/index.html.twig', array(
-            'tasks' => $tasks,
+            'pagination' => $pagination,
         ));
     }
 
@@ -39,6 +46,8 @@ class TaskController extends Controller
      *
      * @Route("/new", name="task_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -51,6 +60,8 @@ class TaskController extends Controller
             $task->setUser($this->get('security.token_storage')->getToken()->getUser());
             $em->persist($task);
             $em->flush();
+            $translated = $this->get('translator')->trans('task.new.flash.notice', array('%task%' => $task->getName()));
+            $this->addFlash('notice', $translated);
 
             return $this->redirectToRoute('task_index');
         }
@@ -66,6 +77,8 @@ class TaskController extends Controller
      *
      * @Route("/{id}", name="task_show")
      * @Method("GET")
+     * @param Task $task
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Task $task)
     {
@@ -82,6 +95,9 @@ class TaskController extends Controller
      *
      * @Route("/{id}/edit", name="task_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Task $task
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Task $task)
     {
@@ -107,6 +123,8 @@ class TaskController extends Controller
     /**
      * @Route("/{id}/delete", name="task_delete")
      * @Method("GET")
+     * @param Task $task
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteTaskAction(Task $task)
     {
@@ -117,6 +135,8 @@ class TaskController extends Controller
     /**
      * @Route("/{id}/change-status", name="task_change_status")
      * @Method("GET")
+     * @param Task $task
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function changeStatusAction(Task $task)
     {

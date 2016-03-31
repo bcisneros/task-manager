@@ -5,6 +5,7 @@ namespace TaskManagerBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Task
  *
@@ -318,7 +319,7 @@ class Task
      *
      * @return Task
      */
-    public function addComment(\TaskManagerBundle\Entity\Comment $comment)
+    public function addComment(Comment $comment)
     {
         $this->comments[] = $comment;
 
@@ -330,7 +331,7 @@ class Task
      *
      * @param \TaskManagerBundle\Entity\Comment $comment
      */
-    public function removeComment(\TaskManagerBundle\Entity\Comment $comment)
+    public function removeComment(Comment $comment)
     {
         $this->comments->removeElement($comment);
     }
@@ -376,7 +377,7 @@ class Task
      *
      * @return Task
      */
-    public function setUser(\TaskManagerBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -391,5 +392,15 @@ class Task
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Determines if a task is overdue or not
+     *
+     * @return bool True if the task is overdue, False if not
+     */
+    public function overdue()
+    {
+        return time() > $this->dueDate->getTimestamp();
     }
 }

@@ -2,23 +2,16 @@
 
 
 namespace TaskManagerBundle\Features;
+include_once "FeatureWebTestCase.php";
 
-
-use Liip\FunctionalTestBundle\Test\WebTestCase;
 use TaskManagerBundle\DataFixtures\ORM\LoadInitialTaskData;
 
-class TaskListFeatureTest extends WebTestCase
+class TaskListFeatureTest extends FeatureWebTestCase
 {
-    protected $client;
-
-    const TASK_LIST_ROUTE = 'en/tasks/';
 
     protected function setUp()
     {
-        $fixtures = $this->loadFixtures(array('TaskManagerBundle\DataFixtures\ORM\LoadAdminUserData',
-            'TaskManagerBundle\DataFixtures\ORM\LoadInitialTaskData'))->getReferenceRepository();
-        $this->loginAs($fixtures->getReference('admin'), 'main');
-        $this->client = static::makeClient();
+        $this->loadFixturesAndLogin();
     }
 
     /**
@@ -63,27 +56,36 @@ class TaskListFeatureTest extends WebTestCase
     /**
      * @test
      */
-    public function should_show_total_number_of_tasks()
+    public function should_show_due_date_in_Y_m_d_h_i_A_format()
     {
-        $totalString = $this->requestTaskIndexPage()->filter('table > tfoot > tr')->first()->filter('td')->first()->text();
-        $this->assertEquals('Total: 4', $totalString);
+        $formattedDueDate = $this->requestTaskIndexPage()->filter('table > tbody > tr')->first()->filter('td')->eq(2)->text();
+        $this->assertEquals('2016-01-01 12:00 AM', $formattedDueDate);
     }
 
     /**
      * @test
      */
-    public function should_show_due_date_in_Y_m_d_h_i_A_format()
+    public function should_show_overdue_tasks_with_different_style()
     {
-        $formattedDueDate = $this->requestTaskIndexPage()->filter('table > tbody > tr')->first()->filter('td')->eq(2)->text();
-        $this->assertEquals('2016-01-01 12:00 AM', $formattedDueDate);
-
+        $overdueStyle = $this->requestTaskIndexPage()->filter('table > tbody > tr')->first()->attr('class');
+        $this->assertEquals('overdue', $overdueStyle);
     }
 
     /**
-     * @return \Symfony\Component\DomCrawler\Crawler
+     * @test
      */
-    private function requestTaskIndexPage()
+    public function should_not_show_overdue_style_for_not_overdue_tasks()
     {
-        return static::makeClient(true)->request('GET', self::TASK_LIST_ROUTE);
+        $style = $this->requestTaskIndexPage()->filter('table > tbody > tr')->eq(3)->attr('class');
+        $this->assertNull($style);
     }
+
+    /**
+     * @test
+     */
+    public function should_not_show_a_pagination_when_tasks_count_is_less_10_elements()
+    {
+        $this->assertCount(0, $this->requestTaskIndexPage()->filter('div.pagination'));
+    }
+
 }

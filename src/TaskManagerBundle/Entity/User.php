@@ -37,7 +37,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function addTask(\TaskManagerBundle\Entity\Task $task)
+    public function addTask(Task $task)
     {
         $this->tasks[] = $task;
 
@@ -49,7 +49,7 @@ class User extends BaseUser
      *
      * @param \TaskManagerBundle\Entity\Task $task
      */
-    public function removeTask(\TaskManagerBundle\Entity\Task $task)
+    public function removeTask(Task $task)
     {
         $this->tasks->removeElement($task);
     }

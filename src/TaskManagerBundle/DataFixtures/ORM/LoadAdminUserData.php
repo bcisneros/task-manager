@@ -1,13 +1,11 @@
 <?php
 
 namespace TaskManagerBundle\DataFixtures\ORM;
+
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Validator\Constraints\DateTime;
-use TaskManagerBundle\Entity\Comment;
-use TaskManagerBundle\Entity\Task;
 use TaskManagerBundle\Entity\User;
-use Doctrine\Common\DataFixtures\AbstractFixture;
 
 class LoadAdminUserData extends AbstractFixture implements FixtureInterface
 {

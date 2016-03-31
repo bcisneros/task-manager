@@ -50,6 +50,18 @@
                 <source>user.welcome.msg</source>
                 <target>Bienvenido %user%</target>
             </trans-unit>
+            <trans-unit id="user.change.password">
+                <source>user.change.password</source>
+                <target>Cambiar contraseña</target>
+            </trans-unit>
+            <trans-unit id="user.password.change.confirmation.title">
+                <source>user.password.change.confirmation.title</source>
+                <target>¡La contraseña ha sido modificada correctamente!</target>
+            </trans-unit>
+            <trans-unit id="user.password.change.confirmation.message">
+                <source>user.password.change.confirmation.message</source>
+                <target>Se ha modificado tu contraseña.</target>
+            </trans-unit>
             <trans-unit id="task.list.title">
                 <source>task.list.title</source>
                 <target>Tareas pendientes</target>
@@ -237,6 +249,14 @@
             <trans-unit id="task.new.title">
                 <source>task.new.title</source>
                 <target>Nueva tarea</target>
+            </trans-unit>
+            <trans-unit id="task.new.flash.notice">
+                <source>task.new.flash.notice</source>
+                <target>¡Se creó la tarea "%task%"!</target>
+            </trans-unit>
+            <trans-unit id="tasks.pagination.info">
+                <source>tasks.pagination.info</source>
+                <target>Página %current% de %totalPages%, Tareas %firstItemNumber% - %lastItemNumber% de %totalTasks%</target>
             </trans-unit>
         </body>
     </file>

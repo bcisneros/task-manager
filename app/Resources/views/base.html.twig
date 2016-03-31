@@ -22,19 +22,28 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ path("homepage") }}">Task Manager <span
-                            class="version">1.6.1</span></a>
+                            class="version">1.6.2</span></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     {% if app.user %}
-                        <li class="welcome">
-                            <a href="#">{{ 'user.welcome.msg' | trans ({'%user%':app.user}) }}</a>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false" id="dLabel">
+                                {{ 'user.welcome.msg' | trans ({'%user%':app.user}) }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                <li>
+                                    <a href="{{ path('fos_user_change_password') }}">{{ 'user.change.password' | trans }}</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="{{ path('fos_user_security_logout') }}">{{ 'link.logout'|trans }}</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="{{ path('task_index') }}">{{ 'task.link.list' | trans }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('fos_user_security_logout') }}">{{ 'link.logout'|trans }}</a>
                         </li>
                     {% endif %}
 
@@ -53,6 +62,9 @@
     </nav>
     <div class="container content">
         <div>
+            {% for flash_message in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">{{ flash_message }}</div>
+            {% endfor %}
             {% block body %}{% endblock %}
         </div>
     </div>
@@ -67,6 +79,14 @@
         </p>
     </address>
 </footer>
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('vendor/jquery/2.2.1/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/3.3.6/js/bootstrap.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('.dropdown-toggle').dropdown();
+        });
+    </script>
+{% endblock %}
 </body>
 </html>
