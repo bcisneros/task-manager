@@ -2,10 +2,9 @@
 
 namespace TaskManagerBundle\Features;
 
-use Liip\FunctionalTestBundle\Test\WebTestCase;
+include_once 'FeatureWebTestCase.php';
 
-
-class TaskCommentsFeatureTest extends WebTestCase
+class TaskCommentsFeatureTest extends FeatureWebTestCase
 {
     protected $client;
 
@@ -86,7 +85,15 @@ Sed a efficitur nibh. Etiam vitae arcu vestibulum, condimentum magna laoreet, fa
         $this->submitComment('2', self::COMMENT_WITH_MORE_THAN_2000_CHARACTERS);
         $this->assertValidationErrors(array('data.comment'), $this->client->getContainer());
         $this->isSuccessful($this->client->getResponse());
+    }
 
+    /**
+     * @test
+     */
+    public function should_add_line_break_when_new_line_is_inserted()
+    {
+        $this->submitCommentAndRedirect('2', "Line1\nLine2");
+        $this->assertCount(1, $this->filter('ul.comment-list > li > p > br'));
     }
 
     private function assertNoCommentsExists()
@@ -114,9 +121,18 @@ Sed a efficitur nibh. Etiam vitae arcu vestibulum, condimentum magna laoreet, fa
 
     private function assertCommentWasCreated($comment)
     {
-        $this->submitComment('2', $comment);
-        $this->client->followRedirect();
+        $this->submitCommentAndRedirect('2', $comment);
         $newCommentCount = $this->client->getCrawler()->filter('html:contains("' . $comment . '")')->count();
         $this->assertEquals(1, $newCommentCount);
+    }
+
+    /**
+     * @param $taskId
+     * @param $comment
+     */
+    private function submitCommentAndRedirect($taskId, $comment)
+    {
+        $this->submitComment($taskId, $comment);
+        $this->client->followRedirect();
     }
 }
