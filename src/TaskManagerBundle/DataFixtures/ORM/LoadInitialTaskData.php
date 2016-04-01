@@ -24,7 +24,7 @@ class LoadInitialTaskData extends AbstractFixture implements FixtureInterface
 
         $sendEmailTask = new Task();
         $sendEmailTask->setName("Send email");
-        $sendEmailTask->setDescription("Send sales report to manager@company.com");
+        $sendEmailTask->setDescription("Send sales report to manager@company.com.\nCall Bob tomorrow");
         $sendEmailTask->setDueDate(new \DateTime('15-01-2016 16:00'));
         $sendEmailTask->setCreationDate(new \DateTime('14-01-2016 02:45'));
         $sendEmailTask->setCategory("Work");

@@ -78,7 +78,7 @@
         <ul class="comment-list">
             {% for comment in task.comments %}
                 <li>
-                    <p>{{ comment.comment }}</p>
+                    <p>{{ comment.comment | nl2br }}</p>
                     <cite>Published on {{ comment.creationDate | date('Y-m-d h:i A') }}</cite>
                 </li>
             {% endfor %}
