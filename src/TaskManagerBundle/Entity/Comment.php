@@ -26,9 +26,9 @@ class Comment
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=2000)
+     * @ORM\Column(name="comment", type="string", length=4000)
      * @Assert\Length(
-     *      max = 2000,
+     *      max = 4000,
      *      maxMessage = "Comment cannot be longer than {{ limit }} characters")
      */
     private $comment;
