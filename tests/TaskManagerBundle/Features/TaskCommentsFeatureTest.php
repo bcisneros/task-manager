@@ -66,6 +66,15 @@ Sed a efficitur nibh. Etiam vitae arcu vestibulum, condimentum magna laoreet, fa
     /**
      * @test
      */
+    public function should_add_comment_equal_to_4000_characters_length()
+    {
+        $this->assertCommentWasCreated(self::COMMENT_WITH_2000_CHARACTERS . self::COMMENT_WITH_2000_CHARACTERS);
+    }
+
+
+    /**
+     * @test
+     */
 
     public function should_cancel_action_when_cancel_link_is_clicked()
     {
@@ -80,9 +89,9 @@ Sed a efficitur nibh. Etiam vitae arcu vestibulum, condimentum magna laoreet, fa
      * @test
      */
 
-    public function should_validate_comment_length_less_or_equal_to_255_characters()
+    public function should_validate_comment_length_less_or_equal_to_4000_characters()
     {
-        $this->submitComment('2', self::COMMENT_WITH_MORE_THAN_2000_CHARACTERS);
+        $this->submitComment('2', self::COMMENT_WITH_MORE_THAN_2000_CHARACTERS . self::COMMENT_WITH_MORE_THAN_2000_CHARACTERS);
         $this->assertValidationErrors(array('data.comment'), $this->client->getContainer());
         $this->isSuccessful($this->client->getResponse());
     }
