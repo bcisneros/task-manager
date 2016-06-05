@@ -159,7 +159,7 @@ class CreateNewTaskFeatureTest extends FeatureWebTestCase
     {
         $this->createTask('Task with flash message');
         $this->client->followRedirect();
-        $this->assertEquals("Task \"New Task\" was created!", $this->filter('div.flash-notice')->first()->text());
+        $this->assertEquals("Task \"New Task\" was created!", $this->filter('div.alert-success')->first()->text());
     }
 
 
